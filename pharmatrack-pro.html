@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PharmaTrack Pro – #1 MR Reporting & Sales Intelligence Platform for Indian Pharma</title>
+<meta name="description" content="Stop guessing. Start tracking. Real-time MR reporting, geo-tagged visits, and pharma sales intelligence that increases your field team ROI by 40%. Trusted by 500+ pharma companies.">
+<meta name="keywords" content="MR reporting app India, medical representative tracking, pharma sales software, DCR reporting app, geo tracking MR, pharma field force management">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #00C27A;
+  --green-dark: #009960;
+  --green-glow: rgba(0,194,122,0.15);
+  --navy: #050F1A;
+  --navy-2: #0A1929;
+  --navy-3: #0D2137;
+  --slate: #1A3050;
+  --text: #E8F0F8;
+  --muted: #7A9BB5;
+  --white: #ffffff;
+  --accent: #FFD166;
+  --red: #FF5757;
+  --border: rgba(255,255,255,0.07);
+  --card-hover: rgba(0,194,122,0.06);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--navy);
+  color:var(--text);
+  overflow-x:hidden;
+  line-height:1.6;
+}
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:0.4;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 48px;
+  background:rgba(5,15,26,0.9);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  transition:padding 0.3s;
+}
+.nav-logo{
+  font-family:'Instrument Serif',serif;
+  font-size:1.5rem;color:var(--white);
+  display:flex;align-items:center;gap:8px;text-decoration:none;
+}
+.nav-logo span{color:var(--green)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{
+  color:var(--muted);text-decoration:none;
+  font-size:0.875rem;font-weight:500;transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{
+  background:var(--green);color:var(--navy);
+  padding:10px 22px;border-radius:6px;
+  font-weight:700;font-size:0.875rem;
+  text-decoration:none;transition:all 0.2s;border:none;cursor:pointer;
+}
+.nav-cta:hover{background:#00d988;transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,194,122,0.3)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:120px 24px 80px;
+  position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,194,122,0.09) 0%, transparent 70%),
+              radial-gradient(ellipse 40% 40% at 80% 80%, rgba(0,100,200,0.07) 0%, transparent 60%);
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),
+                    linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);
+}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--green-glow);border:1px solid rgba(0,194,122,0.3);
+  color:var(--green);padding:6px 16px;border-radius:100px;
+  font-size:0.78rem;font-weight:600;letter-spacing:0.05em;
+  text-transform:uppercase;margin-bottom:28px;position:relative;
+}
+.badge-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.5)}}
+h1{
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(2.8rem,7vw,5.5rem);
+  line-height:1.05;font-weight:400;
+  color:var(--white);max-width:900px;position:relative;
+}
+h1 em{color:var(--green);font-style:italic}
+.hero-sub{
+  font-size:1.15rem;color:var(--muted);max-width:620px;
+  margin:24px auto 40px;line-height:1.75;position:relative;
+}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;position:relative}
+.btn-primary{
+  background:var(--green);color:var(--navy);
+  padding:14px 32px;border-radius:8px;
+  font-weight:700;font-size:1rem;
+  text-decoration:none;transition:all 0.2s;
+  display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;
+  font-family:'DM Sans',sans-serif;
+}
+.btn-primary:hover{background:#00d988;transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,194,122,0.35)}
+.btn-secondary{
+  background:transparent;color:var(--text);
+  padding:14px 32px;border-radius:8px;
+  font-weight:600;font-size:1rem;
+  text-decoration:none;transition:all 0.2s;
+  border:1px solid var(--border);
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-secondary:hover{border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.04)}
+.hero-stats{
+  display:flex;gap:56px;margin-top:72px;
+  justify-content:center;flex-wrap:wrap;position:relative;
+}
+.stat{text-align:center}
+.stat-num{
+  font-family:'Space Mono',monospace;
+  font-size:2.2rem;font-weight:700;color:var(--white);
+}
+.stat-num span{color:var(--green)}
+.stat-label{font-size:0.78rem;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:0.08em}
+
+/* ── SECTIONS ── */
+section{padding:96px 24px;position:relative}
+.container{max-width:1140px;margin:0 auto}
+.section-tag{
+  font-family:'Space Mono',monospace;
+  font-size:0.72rem;color:var(--green);
+  text-transform:uppercase;letter-spacing:0.15em;margin-bottom:16px;
+}
+h2{
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:400;color:var(--white);line-height:1.15;
+}
+h2 em{color:var(--green);font-style:italic}
+.section-intro{font-size:1.05rem;color:var(--muted);max-width:560px;margin-top:16px;line-height:1.75}
+
+/* ── SOCIAL PROOF TICKER ── */
+.ticker-strip{
+  background:var(--navy-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:14px 0;overflow:hidden;
+}
+.ticker-inner{display:flex;gap:48px;white-space:nowrap;animation:ticker 30s linear infinite}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-item{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:0.85rem;color:var(--muted);font-weight:500;flex-shrink:0;
+}
+.ticker-item span{color:var(--green)}
+
+/* ── PROBLEMS ── */
+.problems-section{background:var(--navy-2)}
+.problems-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:20px;margin-top:48px;
+}
+.problem-card{
+  background:var(--navy-3);border:1px solid var(--border);
+  border-radius:12px;padding:28px;transition:all 0.3s;position:relative;overflow:hidden;
+}
+.problem-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--red),transparent);
+  opacity:0;transition:opacity 0.3s;
+}
+.problem-card:hover{border-color:rgba(255,87,87,0.25);transform:translateY(-4px);background:rgba(255,87,87,0.03)}
+.problem-card:hover::before{opacity:1}
+.problem-icon{font-size:2rem;margin-bottom:16px}
+.problem-card h3{font-size:1rem;font-weight:600;color:var(--white);margin-bottom:8px}
+.problem-card p{font-size:0.875rem;color:var(--muted);line-height:1.65}
+
+/* ── SOLUTION ── */
+.solution-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-top:64px}
+.feature-list{display:flex;flex-direction:column;gap:24px}
+.feature-item{display:flex;gap:16px;align-items:flex-start}
+.feature-icon{
+  width:42px;height:42px;border-radius:10px;
+  background:var(--green-glow);border:1px solid rgba(0,194,122,0.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;flex-shrink:0;
+}
+.feature-item h3{font-size:1rem;font-weight:600;color:var(--white);margin-bottom:4px}
+.feature-item p{font-size:0.875rem;color:var(--muted)}
+
+/* ── DASHBOARD MOCKUP ── */
+.dashboard-mockup{
+  background:var(--navy-3);border:1px solid var(--border);
+  border-radius:16px;overflow:hidden;
+  box-shadow:0 40px 80px rgba(0,0,0,0.5),0 0 0 1px var(--border);
+  position:relative;
+}
+.mockup-bar{background:var(--slate);padding:12px 16px;display:flex;align-items:center;gap:8px}
+.mockup-label{font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--muted);margin-left:8px}
+.mock-dot{width:10px;height:10px;border-radius:50%}
+.mock-dot.r{background:#ff5f57}.mock-dot.y{background:#febc2e}.mock-dot.g{background:#28c840}
+.mockup-content{padding:24px}
+.mock-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+.mock-stat{background:var(--navy-2);border-radius:8px;padding:14px;border:1px solid var(--border)}
+.mock-stat-label{font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em}
+.mock-stat-val{font-family:'Space Mono',monospace;font-size:1.4rem;color:var(--white);margin-top:4px}
+.mock-stat-val.green{color:var(--green)}
+.mock-chart{
+  background:var(--navy-2);border-radius:8px;padding:16px;
+  border:1px solid var(--border);height:120px;
+  display:flex;align-items:flex-end;gap:6px;margin-bottom:16px;
+}
+.bar{
+  flex:1;border-radius:4px 4px 0 0;
+  background:linear-gradient(to top,var(--green),rgba(0,194,122,0.3));
+  animation:growBar 1.5s ease both;
+}
+@keyframes growBar{from{transform:scaleY(0);transform-origin:bottom}to{transform:scaleY(1)}}
+.mock-table{background:var(--navy-2);border-radius:8px;overflow:hidden;border:1px solid var(--border)}
+.mock-row{display:flex;padding:10px 14px;gap:12px;border-bottom:1px solid var(--border);align-items:center}
+.mock-row:last-child{border-bottom:none}
+.mock-avatar{width:28px;height:28px;border-radius:50%;background:var(--slate);display:flex;align-items:center;justify-content:center;font-size:0.68rem;color:var(--green);flex-shrink:0;font-weight:700}
+.mock-name{font-size:0.8rem;color:var(--text);flex:1}
+.mock-visits{font-family:'Space Mono',monospace;font-size:0.72rem;color:var(--muted)}
+.mock-status{font-size:0.68rem;padding:3px 10px;border-radius:100px;background:var(--green-glow);color:var(--green)}
+.mock-status.warn{background:rgba(255,209,102,0.12);color:var(--accent)}
+.mock-status.late{background:rgba(255,87,87,0.12);color:var(--red)}
+
+/* ── ROI CALC ── */
+.roi-section{background:var(--navy-2)}
+.roi-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px;align-items:start}
+.input-group{margin-bottom:24px}
+.input-group label{display:block;font-size:0.85rem;color:var(--muted);margin-bottom:8px;font-weight:500}
+.input-group input[type="range"]{width:100%;accent-color:var(--green);cursor:pointer;height:6px}
+.input-value{font-family:'Space Mono',monospace;font-size:1.1rem;color:var(--green);margin-top:6px}
+.roi-result{
+  background:var(--navy-3);border:1px solid rgba(0,194,122,0.25);
+  border-radius:16px;padding:36px;text-align:center;
+  position:sticky;top:100px;
+}
+.roi-label{font-size:0.82rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em}
+.roi-number{
+  font-family:'Instrument Serif',serif;
+  font-size:3.5rem;color:var(--green);line-height:1;margin:12px 0;
+}
+.roi-sub{font-size:0.875rem;color:var(--muted)}
+.roi-breakdown{margin-top:28px;display:flex;flex-direction:column;gap:0;text-align:left}
+.roi-line{
+  display:flex;justify-content:space-between;
+  padding:12px 0;border-bottom:1px solid var(--border);
+  font-size:0.875rem;
+}
+.roi-line:last-child{border-bottom:none}
+.roi-line span:last-child{font-family:'Space Mono',monospace;color:var(--green)}
+.roi-cta-wrap{margin-top:24px}
+
+/* ── CASE STUDY / BEFORE-AFTER ── */
+.case-section{background:var(--navy-3)}
+.case-cards{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px}
+.case-card{
+  background:var(--navy-2);border:1px solid var(--border);
+  border-radius:16px;padding:32px;
+}
+.case-company{font-size:0.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px}
+.case-name{font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:20px}
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.ba-box{background:var(--navy-3);border-radius:10px;padding:16px}
+.ba-label{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;font-weight:600}
+.ba-label.before{color:var(--red)}
+.ba-label.after{color:var(--green)}
+.ba-val{font-family:'Space Mono',monospace;font-size:1.5rem;color:var(--white)}
+.ba-desc{font-size:0.78rem;color:var(--muted);margin-top:4px}
+.case-quote{font-style:italic;font-size:0.9rem;color:var(--muted);padding:16px;border-left:2px solid var(--green);margin-top:16px}
+.case-author{font-size:0.82rem;color:var(--text);margin-top:8px;font-weight:600}
+
+/* ── FEATURES TABS ── */
+.features-section{background:var(--navy-2)}
+.tab-nav{display:flex;gap:8px;flex-wrap:wrap;margin:40px 0 32px}
+.tab-btn{
+  background:var(--navy-3);border:1px solid var(--border);
+  color:var(--muted);padding:10px 20px;border-radius:8px;
+  font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.2s;
+  font-family:'DM Sans',sans-serif;
+}
+.tab-btn:hover{color:var(--white);border-color:rgba(255,255,255,0.15)}
+.tab-btn.active{background:var(--green-glow);border-color:rgba(0,194,122,0.4);color:var(--green)}
+.tab-content{display:none}
+.tab-content.active{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.feat-card{
+  background:var(--navy-3);border:1px solid var(--border);
+  border-radius:12px;padding:20px;transition:all 0.3s;
+}
+.feat-card:hover{border-color:rgba(0,194,122,0.25);transform:translateY(-2px)}
+.feat-card-icon{font-size:1.5rem;margin-bottom:10px}
+.feat-card h4{font-size:0.9rem;font-weight:600;color:var(--white);margin-bottom:6px}
+.feat-card p{font-size:0.8rem;color:var(--muted);line-height:1.6}
+.tab-visual{background:var(--navy-3);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.tab-visual-header{background:var(--slate);padding:12px 16px;font-size:0.75rem;color:var(--muted);font-family:'Space Mono',monospace}
+.tab-visual-body{padding:24px}
+
+/* ── PRICING ── */
+.pricing-section{background:var(--navy-3)}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.pricing-card{
+  background:var(--navy-2);border:1px solid var(--border);
+  border-radius:16px;padding:32px;position:relative;transition:all 0.3s;
+}
+.pricing-card:hover{transform:translateY(-4px)}
+.pricing-card.popular{border-color:rgba(0,194,122,0.4);background:linear-gradient(135deg,var(--navy-2),rgba(0,194,122,0.05))}
+.popular-badge{
+  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  background:var(--green);color:var(--navy);
+  padding:4px 16px;border-radius:100px;font-size:0.72rem;font-weight:700;
+  white-space:nowrap;
+}
+.pricing-tier{font-size:0.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;font-weight:600}
+.pricing-price{
+  font-family:'Space Mono',monospace;
+  font-size:2.5rem;color:var(--white);margin-bottom:4px;
+}
+.pricing-price sup{font-size:1.2rem;vertical-align:super}
+.pricing-price sub{font-size:0.9rem;color:var(--muted);vertical-align:baseline}
+.pricing-desc{font-size:0.85rem;color:var(--muted);margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+.pricing-features{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+.pricing-features li{font-size:0.875rem;color:var(--text);display:flex;gap:8px;align-items:flex-start}
+.pricing-features li::before{content:'✓';color:var(--green);flex-shrink:0;font-weight:700}
+.pricing-features li.no{color:var(--muted)}
+.pricing-features li.no::before{content:'✗';color:var(--border);font-weight:700}
+
+/* ── TESTIMONIALS ── */
+.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;margin-top:48px}
+.testimonial-card{
+  background:var(--navy-3);border:1px solid var(--border);
+  border-radius:14px;padding:28px;transition:transform 0.3s;
+}
+.testimonial-card:hover{transform:translateY(-4px);border-color:rgba(0,194,122,0.15)}
+.stars{color:var(--accent);font-size:0.9rem;margin-bottom:16px}
+.testimonial-text{font-size:0.925rem;color:var(--text);line-height:1.75;margin-bottom:20px;font-style:italic}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.author-avatar{
+  width:42px;height:42px;border-radius:50%;
+  background:var(--slate);display:flex;align-items:center;justify-content:center;
+  font-size:1rem;font-weight:700;color:var(--green);
+}
+.author-name{font-weight:600;font-size:0.9rem;color:var(--white)}
+.author-role{font-size:0.78rem;color:var(--muted)}
+
+/* ── FORM ── */
+.form-section{background:linear-gradient(135deg,var(--navy-2) 0%,var(--navy-3) 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:48px}
+.form-benefits{display:flex;flex-direction:column;gap:16px;margin-top:32px}
+.benefit-item{display:flex;gap:12px;align-items:flex-start}
+.benefit-check{
+  width:20px;height:20px;border-radius:50%;
+  background:var(--green-glow);border:1px solid var(--green);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--green);font-size:0.7rem;flex-shrink:0;margin-top:2px;
+}
+.benefit-text{font-size:0.9rem;color:var(--muted)}
+.demo-form{background:var(--navy-3);border:1px solid var(--border);border-radius:16px;padding:36px}
+.form-title{font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:6px}
+.form-sub{font-size:0.82rem;color:var(--muted);margin-bottom:28px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-field{margin-bottom:16px}
+.form-field label{display:block;font-size:0.8rem;color:var(--muted);margin-bottom:6px;font-weight:500}
+.form-field input,.form-field select{
+  width:100%;background:var(--navy-2);
+  border:1px solid var(--border);border-radius:8px;
+  padding:12px 14px;color:var(--text);
+  font-size:0.9rem;font-family:'DM Sans',sans-serif;
+  transition:border-color 0.2s;outline:none;
+}
+.form-field input:focus,.form-field select:focus{border-color:var(--green)}
+.form-field select option{background:var(--navy-2)}
+.submit-btn{
+  width:100%;background:var(--green);color:var(--navy);
+  border:none;border-radius:8px;padding:14px;
+  font-size:1rem;font-weight:700;cursor:pointer;
+  font-family:'DM Sans',sans-serif;transition:all 0.2s;margin-top:8px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.submit-btn:hover{background:#00d988;transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,194,122,0.3)}
+
+/* ── BLOG ── */
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;margin-top:48px}
+.blog-card{
+  background:var(--navy-3);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;transition:all 0.3s;cursor:pointer;
+}
+.blog-card:hover{transform:translateY(-4px);border-color:rgba(0,194,122,0.25)}
+.blog-thumb{
+  height:140px;display:flex;align-items:center;justify-content:center;font-size:3rem;
+}
+.blog-body{padding:20px}
+.blog-tag{font-size:0.68rem;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;font-weight:600;margin-bottom:8px}
+.blog-title{font-size:0.95rem;font-weight:600;color:var(--white);line-height:1.45;margin-bottom:10px}
+.blog-excerpt{font-size:0.82rem;color:var(--muted);line-height:1.65}
+.blog-cta{font-size:0.8rem;color:var(--green);margin-top:16px;display:flex;align-items:center;gap:4px}
+
+/* ── DOWNLOAD MAGNET ── */
+.magnet-box{
+  background:var(--navy-3);border:1px solid rgba(0,194,122,0.2);
+  border-radius:14px;padding:40px;text-align:center;max-width:560px;margin:40px auto 0;
+}
+.magnet-box h3{font-family:'Instrument Serif',serif;font-size:1.6rem;color:var(--white);margin-bottom:8px}
+.magnet-box p{font-size:0.875rem;color:var(--muted);margin-bottom:24px}
+.magnet-input-row{display:flex;gap:12px}
+.magnet-input-row input{
+  flex:1;background:var(--navy-2);border:1px solid var(--border);
+  border-radius:8px;padding:12px 14px;color:var(--text);
+  font-family:'DM Sans',sans-serif;outline:none;font-size:0.9rem;
+  transition:border-color 0.2s;
+}
+.magnet-input-row input:focus{border-color:var(--green)}
+
+/* ── TRUST ── */
+.trust-section{background:var(--navy-2)}
+.trust-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:20px;margin-top:48px}
+.trust-item{
+  background:var(--navy-3);border:1px solid var(--border);
+  border-radius:12px;padding:24px;text-align:center;transition:all 0.3s;
+}
+.trust-item:hover{border-color:rgba(0,194,122,0.2);transform:translateY(-2px)}
+.trust-icon{font-size:2rem;margin-bottom:12px}
+.trust-label{font-size:0.875rem;color:var(--text);font-weight:600;margin-bottom:4px}
+.trust-sub{font-size:0.75rem;color:var(--muted)}
+
+/* ── CTA STRIP ── */
+.cta-strip{
+  background:linear-gradient(135deg,rgba(0,194,122,0.15) 0%,rgba(0,100,200,0.08) 100%);
+  border-top:1px solid rgba(0,194,122,0.2);
+  border-bottom:1px solid rgba(0,194,122,0.2);
+  text-align:center;padding:72px 24px;
+}
+.cta-strip h2{margin-bottom:8px}
+.cta-strip p{color:var(--muted);margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto}
+.cta-strip .hero-actions{margin-top:0}
+
+/* ── FOOTER ── */
+footer{background:var(--navy-2);border-top:1px solid var(--border);padding:56px 24px 24px}
+.footer-inner{max-width:1140px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand p{font-size:0.875rem;color:var(--muted);margin-top:12px;max-width:280px;line-height:1.75}
+.footer-col h4{font-size:0.85rem;color:var(--white);font-weight:600;margin-bottom:16px}
+.footer-col a{display:block;font-size:0.85rem;color:var(--muted);text-decoration:none;margin-bottom:10px;transition:color 0.2s}
+.footer-col a:hover{color:var(--green)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:0.78rem;color:var(--muted)}
+
+/* ── FLOATING ELEMENTS ── */
+.wa-float{
+  position:fixed;bottom:28px;right:28px;
+  width:58px;height:58px;border-radius:50%;
+  background:#25D366;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(37,211,102,0.4);
+  cursor:pointer;z-index:999;transition:all 0.2s;text-decoration:none;font-size:1.6rem;
+  animation:floatIn 0.5s 1s both;
+}
+.wa-float:hover{transform:scale(1.12);box-shadow:0 12px 32px rgba(37,211,102,0.55)}
+@keyframes floatIn{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+
+.sticky-demo{
+  position:fixed;top:50%;right:0;transform:translateY(-50%);
+  background:var(--green);color:var(--navy);
+  padding:10px 14px;font-weight:700;font-size:0.78rem;
+  text-decoration:none;z-index:999;border-radius:6px 0 0 6px;
+  writing-mode:vertical-rl;transition:all 0.2s;letter-spacing:0.05em;
+}
+.sticky-demo:hover{background:#00d988;padding-right:20px}
+
+/* ── EXIT POPUP ── */
+.popup-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.75);z-index:2000;
+  align-items:center;justify-content:center;backdrop-filter:blur(10px);
+}
+.popup-overlay.show{display:flex}
+.popup-box{
+  background:var(--navy-3);border:1px solid rgba(0,194,122,0.35);
+  border-radius:20px;padding:48px 40px;max-width:480px;width:90%;
+  text-align:center;position:relative;animation:popIn 0.4s ease;
+}
+@keyframes popIn{from{transform:scale(0.85);opacity:0}to{transform:scale(1);opacity:1}}
+.popup-close{
+  position:absolute;top:16px;right:20px;
+  background:none;border:none;color:var(--muted);
+  font-size:1.4rem;cursor:pointer;line-height:1;
+}
+.popup-emoji{font-size:3rem;margin-bottom:16px}
+.popup-box h3{font-family:'Instrument Serif',serif;font-size:1.9rem;color:var(--white);margin-bottom:8px}
+.popup-box p{font-size:0.9rem;color:var(--muted);margin-bottom:24px}
+.popup-input{
+  width:100%;background:var(--navy-2);border:1px solid var(--border);
+  border-radius:8px;padding:12px 14px;color:var(--text);
+  font-size:0.9rem;font-family:'DM Sans',sans-serif;outline:none;margin-bottom:12px;
+  transition:border-color 0.2s;
+}
+.popup-input:focus{border-color:var(--green)}
+
+/* ── ANIMATIONS ── */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.65s ease,transform 0.65s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.fade-up-d1{transition-delay:0.1s}.fade-up-d2{transition-delay:0.2s}.fade-up-d3{transition-delay:0.3s}
+
+/* ── FORM SUCCESS ── */
+.form-success{text-align:center;padding:48px 24px;display:none}
+.form-success .success-icon{font-size:4rem;margin-bottom:16px}
+.form-success h3{font-family:'Instrument Serif',serif;font-size:1.9rem;color:var(--white);margin-bottom:8px}
+.form-success p{color:var(--muted)}
+
+/* ── STATS BAR ── */
+.stats-bar{background:var(--navy-3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:36px 24px}
+.stats-bar-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
+.stats-bar-num{font-family:'Space Mono',monospace;font-size:2.2rem;font-weight:700;color:var(--white)}
+.stats-bar-num em{color:var(--green);font-style:normal}
+.stats-bar-label{font-size:0.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-top:4px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:14px 20px}
+  .nav-links{display:none}
+  .solution-layout,.roi-grid,.form-grid,.footer-top,.case-cards,.tab-content.active,.pricing-grid{grid-template-columns:1fr;gap:32px}
+  .form-row,.feat-grid{grid-template-columns:1fr}
+  .hero-stats{gap:32px}
+  .sticky-demo{display:none}
+  footer .footer-top{gap:24px}
+  .stats-bar-inner{grid-template-columns:repeat(2,1fr);gap:24px}
+  .ba-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:520px){
+  .magnet-input-row{flex-direction:column}
+  .hero-actions{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#top" class="nav-logo">Pharma<span>Track</span></a>
+  <div class="nav-links">
+    <a href="#problems">Pain Points</a>
+    <a href="#solution">Features</a>
+    <a href="#roi">ROI Calculator</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#blog">Resources</a>
+    <a href="#demo">Book Demo</a>
+  </div>
+  <a href="#demo" class="nav-cta">Book Free Demo →</a>
+</nav>
+
+<!-- STICKY SIDE CTA -->
+<a href="#demo" class="sticky-demo">Book Free Demo</a>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20know%20more%20about%20PharmaTrack" class="wa-float" target="_blank" title="Chat on WhatsApp">💬</a>
+
+<!-- EXIT POPUP -->
+<div class="popup-overlay" id="exitPopup">
+  <div class="popup-box">
+    <button class="popup-close" onclick="document.getElementById('exitPopup').classList.remove('show')">✕</button>
+    <div class="popup-emoji">📥</div>
+    <h3>Wait — Get Your Free MR Reporting Template</h3>
+    <p>Download our editable Excel MR Activity Format used by 500+ pharma managers. No cost. No strings attached.</p>
+    <input type="email" class="popup-input" placeholder="Enter your work email">
+    <button class="submit-btn" onclick="this.textContent='✓ Sending to your inbox...'">Send Me The Free Template</button>
+    <p style="font-size:0.75rem;color:var(--muted);margin-top:12px">We'll also send one short email about how to automate this entirely.</p>
+  </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="badge fade-up"><span class="badge-dot"></span> Trusted by 500+ Pharma Companies Across India</div>
+  <h1 class="fade-up">Your MR Team Is Working.<br>But Are They <em>Really?</em></h1>
+  <p class="hero-sub fade-up">PharmaTrack replaces guesswork with geo-verified visits, real-time dashboards, and automated reporting — so you increase sales without increasing headcount.</p>
+  <div class="hero-actions fade-up">
+    <a href="#demo" class="btn-primary">📅 Book Free Demo</a>
+    <a href="#roi" class="btn-secondary">📊 Calculate Your ROI</a>
+  </div>
+  <div class="hero-stats fade-up">
+    <div class="stat">
+      <div class="stat-num">40<span>%</span></div>
+      <div class="stat-label">Avg. Sales Increase</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3<span>x</span></div>
+      <div class="stat-label">Faster Reporting</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">₹0</div>
+      <div class="stat-label">Setup Cost</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">48<span>hr</span></div>
+      <div class="stat-label">Go-Live Time</div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF TICKER -->
+<div class="ticker-strip">
+  <div class="ticker-inner" id="ticker">
+    <div class="ticker-item">🏆 <span>Apex Pharma Ltd.</span> — 42% sales growth in 3 months</div>
+    <div class="ticker-item">🚀 <span>MediCare Distributors</span> — Eliminated 100% fake visits</div>
+    <div class="ticker-item">📊 <span>SunLife Pharma</span> — 3x faster reporting for 80 MRs</div>
+    <div class="ticker-item">🎯 <span>BioNova Labs</span> — ₹28L saved in 6 months</div>
+    <div class="ticker-item">✅ <span>PharmaCure India</span> — Live in 48 hours, zero issues</div>
+    <div class="ticker-item">🏆 <span>Wellness Corp</span> — 38% improvement in doctor coverage</div>
+    <div class="ticker-item">🚀 <span>LifeGuard Pharma</span> — NSM reports in seconds, not hours</div>
+    <!-- duplicate for seamless loop -->
+    <div class="ticker-item">🏆 <span>Apex Pharma Ltd.</span> — 42% sales growth in 3 months</div>
+    <div class="ticker-item">🚀 <span>MediCare Distributors</span> — Eliminated 100% fake visits</div>
+    <div class="ticker-item">📊 <span>SunLife Pharma</span> — 3x faster reporting for 80 MRs</div>
+    <div class="ticker-item">🎯 <span>BioNova Labs</span> — ₹28L saved in 6 months</div>
+    <div class="ticker-item">✅ <span>PharmaCure India</span> — Live in 48 hours, zero issues</div>
+    <div class="ticker-item">🏆 <span>Wellness Corp</span> — 38% improvement in doctor coverage</div>
+    <div class="ticker-item">🚀 <span>LifeGuard Pharma</span> — NSM reports in seconds, not hours</div>
+  </div>
+</div>
+
+<!-- ===== PROBLEMS ===== -->
+<section class="problems-section" id="problems">
+  <div class="container">
+    <div class="section-tag">The Real Problem</div>
+    <h2>What's <em>Actually</em> Killing<br>Your Pharma Sales Growth?</h2>
+    <p class="section-intro">Every day without tracking is money left on the table. Here's what pharma sales managers tell us keeps them up at night.</p>
+    <div class="problems-grid fade-up">
+      <div class="problem-card">
+        <div class="problem-icon">📝</div>
+        <h3>Manual Reporting Chaos</h3>
+        <p>MRs submit Excel sheets at end of week — or don't. You have no visibility into daily activity until it's too late to course-correct.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📍</div>
+        <h3>Fake & Unverified Doctor Visits</h3>
+        <p>No way to confirm if your MR actually visited Dr. Sharma at 11 AM or just marked it from home. You're paying for phantom visits.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📊</div>
+        <h3>Sales Data Scattered Everywhere</h3>
+        <p>Reports in WhatsApp, emails, and spreadsheets. Building a consolidated view takes hours. Decisions are made on stale data.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🎯</div>
+        <h3>No Territory Intelligence</h3>
+        <p>Which doctors are being neglected? Which areas are over-covered? You're flying blind across your entire sales geography.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">⏱️</div>
+        <h3>Managers Chasing Reports</h3>
+        <p>Your sales managers spend 30% of their time following up on reports instead of coaching, strategizing, and closing business.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">💸</div>
+        <h3>Incentives Based on Wrong Data</h3>
+        <p>Without verified activity data, incentive calculations are unfair — rewarding the wrong behaviour and demotivating top performers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOLUTION ===== -->
+<section id="solution">
+  <div class="container">
+    <div class="section-tag">The Solution</div>
+    <h2>Everything Your Sales Team Needs.<br><em>In One Place.</em></h2>
+    <p class="section-intro">Replace scattered tools and guesswork with one intelligent platform built for Indian pharma workflows.</p>
+    <div class="solution-layout">
+      <div class="feature-list fade-up">
+        <div class="feature-item">
+          <div class="feature-icon">📍</div>
+          <div>
+            <h3>GPS Geo-Tagged Doctor Visits</h3>
+            <p>Every visit is timestamped and location-verified. No more fake reports. Real accountability, automatically.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📊</div>
+          <div>
+            <h3>Real-Time Sales Dashboard</h3>
+            <p>See your entire team's activity as it happens. Drill down by MR, territory, product, or time period.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🤖</div>
+          <div>
+            <h3>Auto Daily Call Reports (DCR)</h3>
+            <p>MRs submit reports from their mobile in under 2 minutes. Data flows directly to your dashboard. No WhatsApp needed.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🗺️</div>
+          <div>
+            <h3>Territory & Beat Planning</h3>
+            <p>Visualize coverage gaps. Optimize routes. Ensure every doctor on your list gets the right number of touches.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📈</div>
+          <div>
+            <h3>Sales Analytics & Forecasting</h3>
+            <p>Trend analysis, product performance, and forecasting powered by your actual field data — not estimates.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🔔</div>
+          <div>
+            <h3>Instant Alerts & Notifications</h3>
+            <p>Get notified when an MR misses their daily target, enters a restricted zone, or goes off-route.</p>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up fade-up-d1">
+        <div class="dashboard-mockup">
+          <div class="mockup-bar">
+            <span class="mock-dot r"></span><span class="mock-dot y"></span><span class="mock-dot g"></span>
+            <span class="mockup-label">PharmaTrack Dashboard</span>
+          </div>
+          <div class="mockup-content">
+            <div class="mock-stats">
+              <div class="mock-stat">
+                <div class="mock-stat-label">Visits Today</div>
+                <div class="mock-stat-val green">248</div>
+              </div>
+              <div class="mock-stat">
+                <div class="mock-stat-label">Active MRs</div>
+                <div class="mock-stat-val">34/38</div>
+              </div>
+              <div class="mock-stat">
+                <div class="mock-stat-label">Target %</div>
+                <div class="mock-stat-val green">87%</div>
+              </div>
+            </div>
+            <div class="mock-chart">
+              <div class="bar" style="height:35%"></div><div class="bar" style="height:55%"></div>
+              <div class="bar" style="height:45%"></div><div class="bar" style="height:70%"></div>
+              <div class="bar" style="height:60%"></div><div class="bar" style="height:80%"></div>
+              <div class="bar" style="height:75%"></div><div class="bar" style="height:90%"></div>
+              <div class="bar" style="height:85%"></div><div class="bar" style="height:95%"></div>
+              <div class="bar" style="height:88%"></div><div class="bar" style="height:100%"></div>
+            </div>
+            <div class="mock-table">
+              <div class="mock-row" style="background:rgba(255,255,255,0.02)">
+                <div style="font-size:0.68rem;color:var(--muted);flex:1;text-transform:uppercase;letter-spacing:0.08em">MR Name</div>
+                <div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em">Visits</div>
+                <div style="font-size:0.68rem;color:var(--muted);width:70px;text-align:right;text-transform:uppercase;letter-spacing:0.08em">Status</div>
+              </div>
+              <div class="mock-row">
+                <div class="mock-avatar">RK</div>
+                <div class="mock-name">Rajesh Kumar</div>
+                <div class="mock-visits">12/14</div>
+                <div class="mock-status">On Track</div>
+              </div>
+              <div class="mock-row">
+                <div class="mock-avatar">PS</div>
+                <div class="mock-name">Priya Sharma</div>
+                <div class="mock-visits">8/14</div>
+                <div class="mock-status warn">Lagging</div>
+              </div>
+              <div class="mock-row">
+                <div class="mock-avatar">AM</div>
+                <div class="mock-name">Amit Mehta</div>
+                <div class="mock-visits">14/14</div>
+                <div class="mock-status">On Track</div>
+              </div>
+              <div class="mock-row">
+                <div class="mock-avatar">SK</div>
+                <div class="mock-name">Sunita Kapoor</div>
+                <div class="mock-visits">2/14</div>
+                <div class="mock-status late">Alert</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS BAR ===== -->
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div>
+      <div class="stats-bar-num"><em>500+</em></div>
+      <div class="stats-bar-label">Pharma Companies</div>
+    </div>
+    <div>
+      <div class="stats-bar-num"><em>12,000+</em></div>
+      <div class="stats-bar-label">MRs on Platform</div>
+    </div>
+    <div>
+      <div class="stats-bar-num"><em>2.4M+</em></div>
+      <div class="stats-bar-label">Doctor Visits Tracked</div>
+    </div>
+    <div>
+      <div class="stats-bar-num"><em>₹84Cr+</em></div>
+      <div class="stats-bar-label">Sales Monitored Monthly</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ROI CALCULATOR ===== -->
+<section class="roi-section" id="roi">
+  <div class="container">
+    <div class="section-tag">ROI Calculator</div>
+    <h2>Calculate What <em>Inefficiency</em><br>Is Costing You Right Now</h2>
+    <p class="section-intro">Adjust the sliders based on your team size and see your potential annual savings.</p>
+    <div class="roi-grid">
+      <div class="fade-up">
+        <div class="input-group">
+          <label>Number of MRs in your team</label>
+          <input type="range" id="mrCount" min="5" max="500" value="30" oninput="calcROI()">
+          <div class="input-value" id="mrCountVal">30 MRs</div>
+        </div>
+        <div class="input-group">
+          <label>Average MR monthly salary (₹)</label>
+          <input type="range" id="salary" min="15000" max="150000" step="5000" value="40000" oninput="calcROI()">
+          <div class="input-value" id="salaryVal">₹40,000</div>
+        </div>
+        <div class="input-group">
+          <label>Estimated % of fake/unverified visits</label>
+          <input type="range" id="fakePercent" min="5" max="50" value="15" oninput="calcROI()">
+          <div class="input-value" id="fakeVal">15% fake visits</div>
+        </div>
+        <div class="input-group">
+          <label>Manager hours lost per week on report chasing</label>
+          <input type="range" id="managerHours" min="2" max="40" value="8" oninput="calcROI()">
+          <div class="input-value" id="managerHoursVal">8 hrs/week</div>
+        </div>
+        <div class="input-group">
+          <label>Number of Sales Managers</label>
+          <input type="range" id="managerCount" min="1" max="20" value="3" oninput="calcROI()">
+          <div class="input-value" id="managerCountVal">3 managers</div>
+        </div>
+      </div>
+      <div class="fade-up fade-up-d1">
+        <div class="roi-result">
+          <div class="roi-label">Estimated Annual Loss (Current)</div>
+          <div class="roi-number" id="roiNumber">₹86.4L</div>
+          <div class="roi-sub">in wasted salaries, fake visits &amp; manager time</div>
+          <div class="roi-breakdown">
+            <div class="roi-line">
+              <span>Salary cost on unverified visits</span>
+              <span id="fakeCost">₹43.2L</span>
+            </div>
+            <div class="roi-line">
+              <span>Manager productivity loss</span>
+              <span id="managerCost">₹5.6L</span>
+            </div>
+            <div class="roi-line">
+              <span>Missed sales opportunities</span>
+              <span id="missedSales">₹34.6L</span>
+            </div>
+            <div class="roi-line" style="border-top:1px solid rgba(0,194,122,0.3);margin-top:4px;padding-top:16px">
+              <span style="font-weight:700;color:var(--white)">PharmaTrack annual cost</span>
+              <span id="platformCost" style="color:var(--accent)">₹0.6L</span>
+            </div>
+          </div>
+          <div class="roi-cta-wrap">
+            <a href="#demo" class="btn-primary" style="width:100%;justify-content:center;margin-top:0">Stop the Bleeding → Book Demo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CASE STUDIES ===== -->
+<section class="case-section" id="case-studies">
+  <div class="container">
+    <div class="section-tag">Case Studies</div>
+    <h2>Real Companies.<br><em>Real Results.</em></h2>
+    <p class="section-intro">These aren't projections. Here's what happened when our clients replaced guesswork with PharmaTrack.</p>
+    <div class="case-cards fade-up">
+      <div class="case-card">
+        <div class="case-company">Pharma · Maharashtra</div>
+        <div class="case-name">Apex Pharma Ltd. — 80 MR Team</div>
+        <div class="ba-grid">
+          <div class="ba-box">
+            <div class="ba-label before">Before</div>
+            <div class="ba-val">28%</div>
+            <div class="ba-desc">Doctor coverage rate</div>
+          </div>
+          <div class="ba-box">
+            <div class="ba-label after">After</div>
+            <div class="ba-val">74%</div>
+            <div class="ba-desc">Doctor coverage rate</div>
+          </div>
+          <div class="ba-box">
+            <div class="ba-label before">Before</div>
+            <div class="ba-val">22%</div>
+            <div class="ba-desc">Estimated fake visits</div>
+          </div>
+          <div class="ba-box">
+            <div class="ba-label after">After</div>
+            <div class="ba-val">0%</div>
+            <div class="ba-desc">Verified GPS visits</div>
+          </div>
+        </div>
+        <div class="case-quote">
+          "Within 60 days of deploying PharmaTrack, our NSM could see every MR's activity in real time. Sales went up 42%. It was the best investment we made."
+        </div>
+        <div class="case-author">— Rakesh Pandey, NSM · Apex Pharma Ltd.</div>
+      </div>
+      <div class="case-card">
+        <div class="case-company">Distributor Network · Gujarat</div>
+        <div class="case-name">SunLife Distribution — 120 MR Team</div>
+        <div class="ba-grid">
+          <div class="ba-box">
+            <div class="ba-label before">Before</div>
+            <div class="ba-val">4 hrs</div>
+            <div class="ba-desc">Daily report compilation</div>
+          </div>
+          <div class="ba-box">
+            <div class="ba-label after">After</div>
+            <div class="ba-val">8 min</div>
+            <div class="ba-desc">Auto-generated reports</div>
+          </div>
+          <div class="ba-box">
+            <div class="ba-label before">Before</div>
+            <div class="ba-val">₹0</div>
+            <div class="ba-desc">Incentive accuracy</div>
+          </div>
+          <div class="ba-box">
+            <div class="ba-label after">After</div>
+            <div class="ba-val">100%</div>
+            <div class="ba-desc">Data-backed incentives</div>
+          </div>
+        </div>
+        <div class="case-quote">
+          "Managers no longer chase reports. MRs no longer argue about incentives. The entire culture of accountability changed in one quarter."
+        </div>
+        <div class="case-author">— Meena Joshi, Sales Head · SunLife Distribution</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES TABS ===== -->
+<section class="features-section">
+  <div class="container">
+    <div class="section-tag">Full Feature Suite</div>
+    <h2>Every Tool Your Field Force <em>Actually Needs</em></h2>
+    <p class="section-intro">From daily call reports to AI-powered forecasting — built for every role in your pharma sales hierarchy.</p>
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="showTab('dcr')">📋 DCR & Reporting</button>
+      <button class="tab-btn" onclick="showTab('geo')">📍 Geo Tracking</button>
+      <button class="tab-btn" onclick="showTab('analytics')">📊 Analytics</button>
+      <button class="tab-btn" onclick="showTab('admin')">⚙️ Admin & Manager</button>
+      <button class="tab-btn" onclick="showTab('expense')">💰 Expense & Leave</button>
+    </div>
+    <!-- DCR Tab -->
+    <div class="tab-content active" id="tab-dcr">
+      <div class="feat-grid fade-up">
+        <div class="feat-card">
+          <div class="feat-card-icon">📱</div>
+          <h4>Mobile DCR Submission</h4>
+          <p>MRs submit daily call reports in under 2 minutes from Android or iOS — no internet required for field entry.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-card-icon">🏥</div>
+          <h4>Doctor & Chemist Visits</h4>
+          <p>Log doctor visits, chemist calls, hospital rounds with product detailing, samples, and remarks.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-card-icon">🔒</div>
+          <h4>DCR Lock After Deadline</h4>
+          <p>Admin can lock DCR editing after daily cut-off — preventing backdated or falsified entries.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-card-icon">📅</div>
+          <h4>Tour Plan Approval</h4>
+          <p>MRs submit monthly tour plans for manager approval. Compare planned vs. actual coverage instantly.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-card-icon">🎁</div>
+          <h4>Sample & Gift Tracking</h4>
+          <p>Track sample distribution, gift disbursement, and promotional material by MR and product.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-card-icon">📦</div>
+          <h4>Order Booking & Forwarding</h4>
+          <p>MRs book orders on mobile. Orders auto-forward to distributor with product quantities and status tracking.</p>
+        </div>
+      </div>
+      <div class="tab-visual fade-up fade-up-d1">
+        <div class="tab-visual-header">DCR Submission Flow · MR Mobile App</div>
+        <div class="tab-visual-body">
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="background:var(--navy-2);border-radius:8px;padding:14px;border:1px solid var(--border)">
+              <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">Today's Visit Log</div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <div><div style="font-size:0.85rem;font-weight:600;color:var(--white)">Dr. R. Sharma (Cardiologist)</div><div style="font-size:0.75rem;color:var(--muted)">10:30 AM · Max Hospital, Sector 4</div></div>
+                  <span style="font-size:0.68rem;padding:3px 10px;border-radius:100px;background:var(--green-glow);color:var(--green)">GPS ✓</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <div><div style="font-size:0.85rem;font-weight:600;color:var(--white)">Dr. P. Verma (Neurologist)</div><div style="font-size:0.75rem;color:var(--muted)">1:15 PM · Apollo Clinic, MG Road</div></div>
+                  <span style="font-size:0.68rem;padding:3px 10px;border-radius:100px;background:var(--green-glow);color:var(--green)">GPS ✓</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <div><div style="font-size:0.85rem;font-weight:600;color:var(--white)">Sharma Medical Store</div><div style="font-size:0.75rem;color:var(--muted)">3:00 PM · Civil Lines</div></div>
+                  <span style="font-size:0.68rem;padding:3px 10px;border-radius:100px;background:rgba(255,209,102,0.12);color:var(--accent)">Pending</span>
+                </div>
+              </div>
+            </div>
+            <div style="background:var(--navy-2);border-radius:8px;padding:14px;border:1px solid var(--border)">
+              <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">Products Detailed Today</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <span style="font-size:0.78rem;background:var(--green-glow);border:1px solid rgba(0,194,122,0.2);color:var(--green);padding:4px 12px;border-radius:100px">Cardiomax 5mg</span>
+                <span style="font-size:0.78rem;background:var(--green-glow);border:1px solid rgba(0,194,122,0.2);color:var(--green);padding:4px 12px;border-radius:100px">NeuroCare Plus</span>
+                <span style="font-size:0.78rem;background:var(--green-glow);border:1px solid rgba(0,194,122,0.2);color:var(--green);padding:4px 12px;border-radius:100px">OrthoFlex 100</span>
+              </div>
+            </div>
+            <div style="background:var(--green);border-radius:8px;padding:12px;text-align:center;font-weight:700;color:var(--navy);cursor:pointer;font-size:0.9rem">
+              ✓ Submit Today's Report
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- GEO Tab -->
+    <div class="tab-content" id="tab-geo">
+      <div class="feat-grid fade-up">
+        <div class="feat-card"><div class="feat-card-icon">🛰️</div><h4>Live Location Tracking</h4><p>See where every MR is, right now. Route mapping with distance covered and territory coverage.</p></div>
+        <div class="feat-card"><div class="feat-card-icon">✅</div><h4>Check-In / Check-Out</h4><p>Verified entry and exit at every doctor clinic. Timestamp-locked with GPS coordinates.</p></div>
+        <div class="feat-card"><div class="feat-card-icon">🚫</div><h4>Fake Visit Prevention</h4><p>Visits logged outside the allowed radius of the doctor's address are automatically flagged.</p></div>
+        <div class="feat-card"><div class="feat-card-icon">🗺️</div><h4>Route Optimization</h4><p>Suggest optimal visit routes to reduce travel time and increase doctor coverage per day.</p></div>
+        <div class="feat-card"><div class="feat-card-icon">📏</div><h4>Distance & Travel Reports</h4><p>Auto-calculate daily distance for expense validation. Eliminate inflated travel claims.</p></div>
+        <div class="feat-card"><div class="feat-card-icon">⚠️</div><h4>Off-Route Alerts</h4><p>Instant manager notification when MR deviates significantly from approved tour plan.</p></div>
+      </div>
+      <div class="tab-visual fade-up fade-up-d1">
+        <div class="tab-visual-header">Geo Tracking · Live Map View</div>
+        <div class="tab-visual-body">
+          <div style="background:var(--navy-2);border-radius:10px;height:200px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);position:relative;overflow:hidden;margin-bottom:16px">
+            <div style="font-size:3rem;opacity:0.15;position:absolute">🗺️</div>
+            <div style="position:relative;z-index:1;text-align:center">
+              <div style="font-size:0.85rem;color:var(--green);font-weight:600">34 MRs Active Right Now</div>
+              <div style="font-size:0.75rem;color:var(--muted);margin-top:4px">Across 12 cities · Last updated 2 min ago</div>
+              <div style="display:flex;gap:12px;justify-content:center;margin-top:16px">
+                <div style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;background:var(--green);border-radius:50%;display:inline-block"></span><span style="font-size:0.75rem;color:var(--muted)">On Track (28)</span></div>
+                <div style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;background:var(--accent);border-radius:50%;display:inline-block"></span><span style="font-size:0.75rem;color:var(--muted)">Lagging (4)</span></div>
+                <div style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;background:var(--red);border-radius:50%;display:inline-block"></span><span style="font-size:0.75rem;color:var(--muted)">Off-Route (2)</span></div>
+              </div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div style="background:var(--navy-2);border-radius:8px;padding:14px;border:1px solid var(--border);text-align:center">
+              <div style="font-family:'Space Mono',monospace;font-size:1.8rem;color:var(--green)">248</div>
+              <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em">Verified Visits Today</div>
+            </div>
+            <div style="background:var(--navy-2);border-radius:8px;padding:14px;border:1px solid var(--border);text-align:center">
+              <div style="font-family:'Space Mono',monospace;font-size:1.8rem;color:var(--green)">0</div>
+              <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em">Unverified Visits</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ANALYTICS Tab -->
+    <div class="tab-content" id="tab-analytics">
+      <div class="feat-grid fade-up">
+        <div class="feat-card"><div class="feat-card-icon">📉</div><h4>Doctor Coverage Analysis</h4><p>See which doctors are neglected, over-visited, or converting — by MR, territory, and product.</p></div>
+        <div class="feat-card"><div class="feat-card-icon">🎯</div><h4>Target vs Achievement</h4><p>Real-time tracking of monthly targets by product, MR, and territory with graphical dashboards.</p></div>
+        <div class="feat-card"><div class="feat-card-icon">📆</div><h4>Trend & Growth Reports</h4><p>Monthly comparative reports showing growth, decline, and seasonal patterns across your territories.</p></div>
+        <div class="feat-card"><div class="feat-card-icon">🏆</div><h4>Underperformer Detection</h4><p>AI-flagged MRs who are consistently below benchmark — before it's too late to intervene.</p></div>
+        <div class="feat-card"><div class="feat-card-icon">💊</div><h4>Product-Wise Performance</h4><p>Which products are being detailed most? Which are being neglected? Drive the right conversation.</p></div>
+        <div class="feat-card"><div class="feat-card-icon">📤</div><h4>Export to Excel / PDF</h4><p>One-click export of any report to Excel or PDF for board presentations and management reviews.</p></div>
+      </div>
+      <div class="tab-visual fade-up fade-up-d1">
+        <div class="tab-visual-header">Analytics Dashboard · Product Performance</div>
+        <div class="tab-visual-body">
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="font-size:0.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em">Top Products This Month</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:0.85rem;color:var(--text)">Cardiomax 5mg</span><span style="font-family:'Space Mono',monospace;font-size:0.8rem;color:var(--green)">94%</span></div><div style="height:8px;background:var(--navy-2);border-radius:100px;overflow:hidden"><div style="height:100%;width:94%;background:var(--green);border-radius:100px"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:0.85rem;color:var(--text)">NeuroCare Plus</span><span style="font-family:'Space Mono',monospace;font-size:0.8rem;color:var(--green)">78%</span></div><div style="height:8px;background:var(--navy-2);border-radius:100px;overflow:hidden"><div style="height:100%;width:78%;background:var(--green);border-radius:100px"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:0.85rem;color:var(--text)">OrthoFlex 100</span><span style="font-family:'Space Mono',monospace;font-size:0.8rem;color:var(--accent)">52%</span></div><div style="height:8px;background:var(--navy-2);border-radius:100px;overflow:hidden"><div style="height:100%;width:52%;background:var(--accent);border-radius:100px"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:0.85rem;color:var(--text)">GastroShield</span><span style="font-family:'Space Mono',monospace;font-size:0.8rem;color:var(--red)">31%</span></div><div style="height:8px;background:var(--navy-2);border-radius:100px;overflow:hidden"><div style="height:100%;width:31%;background:var(--red);border-radius:100px"></div></div></div>
+            </div>
+            <div style="background:rgba(0,194,122,0.08);border:1px solid rgba(0,194,122,0.2);border-radius:8px;padding:12px;margin-top:4px">
+              <div style="font-size:0.78rem;color:var(--green);font-weight:600">🔍 AI Insight</div>
+              <div style="font-size:0.82rem;color:var(--muted);margin-top:4px">GastroShield is being under-detailed in 4 territories. Consider targeted detailing push in Week 3.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ADMIN Tab -->
+    <div class="tab-content" id="tab-admin">
+      <div class="feat-grid fade-up">
+        <div class="feat-card"><div class="feat-card-icon">👥</div><h4>Add / Remove MRs</h4><p>Add new team members, assign territories and targets, and manage access levels in seconds.</p></div>
+        <div class="feat-card"><div class="feat-card-icon">🔐</div><h4>Role-Based Access</h4><p>MR sees own data. Area Manager sees team. NSM sees all. Admin has full control.</p></div>
+        <div class="feat-card"><div class="feat-card-icon">📣</div><h4>Announcement System</h4><p>Push notifications, scheme updates, and announcements to entire team or specific regions.</p></div>
+        <div class="feat-card"><div class="feat-card-icon">📋</div><h4>Attendance Management</h4><p>Location-based attendance, leave requests, approval workflows, and holiday calendar.</p></div>
+        <div class="feat-card"><div class="feat-card-icon">🖥️</div><h4>Web Admin Panel</h4><p>Full-featured web dashboard for admin and managers — accessible from any browser, anywhere.</p></div>
+        <div class="feat-card"><div class="feat-card-icon">☁️</div><h4>Secure Cloud Backup</h4><p>All data encrypted and backed up daily. Device binding and IP restriction options available.</p></div>
+      </div>
+      <div class="tab-visual fade-up fade-up-d1">
+        <div class="tab-visual-header">Admin Panel · Team Overview</div>
+        <div class="tab-visual-body">
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+              <div style="background:var(--navy-2);border-radius:8px;padding:12px;border:1px solid var(--border);text-align:center"><div style="font-family:'Space Mono',monospace;font-size:1.4rem;color:var(--green)">38</div><div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase">Total MRs</div></div>
+              <div style="background:var(--navy-2);border-radius:8px;padding:12px;border:1px solid var(--border);text-align:center"><div style="font-family:'Space Mono',monospace;font-size:1.4rem;color:var(--green)">34</div><div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase">Active Today</div></div>
+              <div style="background:var(--navy-2);border-radius:8px;padding:12px;border:1px solid var(--border);text-align:center"><div style="font-family:'Space Mono',monospace;font-size:1.4rem;color:var(--red)">4</div><div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase">Not Active</div></div>
+            </div>
+            <div style="background:var(--navy-2);border-radius:8px;overflow:hidden;border:1px solid var(--border)">
+              <div style="display:flex;padding:8px 12px;border-bottom:1px solid var(--border);gap:12px">
+                <div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;flex:1">Territory</div>
+                <div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase">MRs</div>
+                <div style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;width:80px;text-align:right">Achievement</div>
+              </div>
+              <div style="display:flex;padding:10px 12px;border-bottom:1px solid var(--border);gap:12px;align-items:center">
+                <div style="font-size:0.82rem;color:var(--text);flex:1">Maharashtra West</div>
+                <div style="font-family:'Space Mono',monospace;font-size:0.78rem;color:var(--muted)">12</div>
+                <div style="width:80px;text-align:right;font-family:'Space Mono',monospace;font-size:0.82rem;color:var(--green)">91%</div>
+              </div>
+              <div style="display:flex;padding:10px 12px;border-bottom:1px solid var(--border);gap:12px;align-items:center">
+                <div style="font-size:0.82rem;color:var(--text);flex:1">Gujarat North</div>
+                <div style="font-family:'Space Mono',monospace;font-size:0.78rem;color:var(--muted)">8</div>
+                <div style="width:80px;text-align:right;font-family:'Space Mono',monospace;font-size:0.82rem;color:var(--accent)">67%</div>
+              </div>
+              <div style="display:flex;padding:10px 12px;gap:12px;align-items:center">
+                <div style="font-size:0.82rem;color:var(--text);flex:1">Rajasthan Central</div>
+                <div style="font-family:'Space Mono',monospace;font-size:0.78rem;color:var(--muted)">10</div>
+                <div style="width:80px;text-align:right;font-family:'Space Mono',monospace;font-size:0.82rem;color:var(--red)">44%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- EXPENSE Tab -->
+    <div class="tab-content" id="tab-expense">
+      <div class="feat-grid fade-up">
+        <div class="feat-card"><div class="feat-card-icon">🧾</div><h4>Digital Expense Submission</h4><p>MRs submit travel, food, and lodging expenses directly from mobile with bill photo upload.</p></div>
+        <div class="feat-card"><div class="feat-card-icon">✔️</div><h4>Expense Approval Workflow</h4><p>Multi-level approval — Area Manager → Regional Manager → Accounts. Automated and transparent.</p></div>
+        <div class="feat-card"><div class="feat-card-icon">📍</div><h4>Distance-Based Validation</h4><p>Travel expenses are cross-validated against actual GPS distance — eliminating inflated claims.</p></div>
+        <div class="feat-card"><div class="feat-card-icon">📊</div><h4>Monthly Expense Summary</h4><p>Consolidated expense reports by MR, territory, and category — ready for finance department.</p></div>
+        <div class="feat-card"><div class="feat-card-icon">🏖️</div><h4>Leave Management</h4><p>MRs apply for leave digitally. Managers approve or reject with a tap. Holiday calendar sync.</p></div>
+        <div class="feat-card"><div class="feat-card-icon">📱</div><h4>Attendance via App</h4><p>Daily login is marked as attendance. Location-stamped. No separate biometric system needed.</p></div>
+      </div>
+      <div class="tab-visual fade-up fade-up-d1">
+        <div class="tab-visual-header">Expense Module · Pending Approvals</div>
+        <div class="tab-visual-body">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="background:var(--navy-2);border-radius:8px;padding:14px;border:1px solid var(--border)">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+                <div><div style="font-size:0.85rem;font-weight:600;color:var(--white)">Rajesh Kumar</div><div style="font-size:0.75rem;color:var(--muted)">Travel + Food · Nov 18-20</div></div>
+                <div style="font-family:'Space Mono',monospace;font-size:1rem;color:var(--accent)">₹3,240</div>
+              </div>
+              <div style="display:flex;gap:8px">
+                <div style="flex:1;background:var(--green);border-radius:6px;padding:6px;text-align:center;font-size:0.75rem;font-weight:700;color:var(--navy);cursor:pointer">Approve</div>
+                <div style="flex:1;background:rgba(255,87,87,0.15);border:1px solid rgba(255,87,87,0.3);border-radius:6px;padding:6px;text-align:center;font-size:0.75rem;font-weight:700;color:var(--red);cursor:pointer">Flag</div>
+              </div>
+            </div>
+            <div style="background:var(--navy-2);border-radius:8px;padding:14px;border:1px solid var(--border)">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+                <div><div style="font-size:0.85rem;font-weight:600;color:var(--white)">Priya Sharma</div><div style="font-size:0.75rem;color:var(--muted)">Lodging · Nov 15-17</div></div>
+                <div style="font-family:'Space Mono',monospace;font-size:1rem;color:var(--accent)">₹5,800</div>
+              </div>
+              <div style="background:rgba(255,87,87,0.08);border:1px solid rgba(255,87,87,0.2);border-radius:6px;padding:8px;font-size:0.75rem;color:var(--red)">⚠️ Expense exceeds policy limit by ₹1,200. Requires NSM approval.</div>
+            </div>
+            <div style="text-align:center;margin-top:4px">
+              <div style="font-size:0.78rem;color:var(--muted)">12 approvals pending · Total: <span style="color:var(--accent);font-family:'Space Mono',monospace">₹42,680</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="section-tag">Transparent Pricing</div>
+    <h2>Simple Plans.<br><em>Zero Hidden Costs.</em></h2>
+    <p class="section-intro">No setup fee. No long contracts. Start with a 30-day free pilot, then choose a plan that fits your team.</p>
+    <div class="pricing-grid fade-up">
+      <div class="pricing-card">
+        <div class="pricing-tier">Starter</div>
+        <div class="pricing-price"><sup>₹</sup>299<sub>/MR/month</sub></div>
+        <div class="pricing-desc">Perfect for small pharma teams getting started with digital reporting</div>
+        <ul class="pricing-features">
+          <li>DCR & Daily Reporting</li>
+          <li>GPS Geo-Tagged Visits</li>
+          <li>Basic Manager Dashboard</li>
+          <li>Mobile App (Android)</li>
+          <li>Email Support</li>
+          <li class="no">Territory Analytics</li>
+          <li class="no">Expense Management</li>
+          <li class="no">Advanced Analytics</li>
+        </ul>
+        <a href="#demo" class="btn-secondary" style="width:100%;justify-content:center;text-align:center">Start Free Pilot</a>
+      </div>
+      <div class="pricing-card popular">
+        <div class="popular-badge">Most Popular</div>
+        <div class="pricing-tier">Professional</div>
+        <div class="pricing-price"><sup>₹</sup>499<sub>/MR/month</sub></div>
+        <div class="pricing-desc">The complete system for growing pharma companies — everything in Starter, plus</div>
+        <ul class="pricing-features">
+          <li>Everything in Starter</li>
+          <li>Territory & Beat Planning</li>
+          <li>Expense Management</li>
+          <li>Leave & Attendance</li>
+          <li>Tour Plan Approval</li>
+          <li>Advanced Analytics & Forecasting</li>
+          <li>Android + iOS App</li>
+          <li>WhatsApp + Phone Support</li>
+        </ul>
+        <a href="#demo" class="btn-primary" style="width:100%;justify-content:center;text-align:center">Book Free Demo</a>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-tier">Enterprise</div>
+        <div class="pricing-price" style="font-size:2rem">Custom</div>
+        <div class="pricing-desc">For large pharma companies with 100+ MRs, multi-division, or custom integration needs</div>
+        <ul class="pricing-features">
+          <li>Everything in Professional</li>
+          <li>Multi-Company Management</li>
+          <li>CRM & ERP Integration</li>
+          <li>AI Sales Prediction</li>
+          <li>Custom Reports</li>
+          <li>Dedicated Account Manager</li>
+          <li>SLA-Backed Support</li>
+          <li>On-Site Training</li>
+        </ul>
+        <a href="#demo" class="btn-secondary" style="width:100%;justify-content:center;text-align:center">Contact Sales</a>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:0.85rem;color:var(--muted);margin-top:32px">✓ 30-day free pilot · ✓ No credit card required · ✓ Cancel anytime · ✓ Onboarding included</p>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section id="testimonials" style="background:var(--navy-2)">
+  <div class="container">
+    <div class="section-tag">Social Proof</div>
+    <h2>What Pharma Leaders Are<br><em>Saying About Us</em></h2>
+    <div class="testimonials-grid fade-up">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">"Before PharmaTrack, I had no idea what my 45 MRs were doing until Friday. Now I can see everything by 10 AM every day. The geo-tracking alone paid for the entire platform."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">RP</div>
+          <div>
+            <div class="author-name">Rakesh Pandey</div>
+            <div class="author-role">NSM · Apex Pharma Ltd., Mumbai</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">"Our managers were spending 3 hours daily chasing DCR. PharmaTrack automated everything. Those 3 hours are now spent on actual sales coaching. We saw 38% growth in Q3."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">MJ</div>
+          <div>
+            <div class="author-name">Meena Joshi</div>
+            <div class="author-role">Sales Head · SunLife Distribution, Ahmedabad</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">"We tried 3 other apps before this. PharmaTrack was the only one our MRs actually used without complaining. Simple mobile app, fast, and the manager dashboard is excellent."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">KS</div>
+          <div>
+            <div class="author-name">Kiran Singh</div>
+            <div class="author-role">GM Sales · BioNova Labs, Hyderabad</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">"The ROI was visible in the first month. We identified 8 MRs who were submitting fake visits. When that stopped, real visits went up 30%. Team morale and fairness improved dramatically."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">AV</div>
+          <div>
+            <div class="author-name">Anil Verma</div>
+            <div class="author-role">Director Sales · PharmaCure India, Delhi</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">"Setup was genuinely 48 hours. The team at PharmaTrack migrated our doctor database, trained all 120 MRs, and went live. Their support is responsive and actually helpful."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">SK</div>
+          <div>
+            <div class="author-name">Sunita Kapoor</div>
+            <div class="author-role">COO · MediReach Pharma, Pune</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">"The territory analytics opened my eyes to massive coverage gaps. Two territories were virtually untouched by 4 MRs. Re-routing them added ₹14L to monthly sales in one quarter."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">DM</div>
+          <div>
+            <div class="author-name">Dinesh Malhotra</div>
+            <div class="author-role">Regional Manager · Wellness Corp, Jaipur</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BLOG ===== -->
+<section id="blog">
+  <div class="container">
+    <div class="section-tag">Insights & Resources</div>
+    <h2>Free Pharma Sales Intelligence.<br><em>No Strings Attached.</em></h2>
+    <p class="section-intro">Articles written by pharma sales experts to help you build a high-performance field force.</p>
+    <div class="blog-grid fade-up">
+      <div class="blog-card">
+        <div class="blog-thumb" style="background:linear-gradient(135deg,#050f1a,#0a1929)">📊</div>
+        <div class="blog-body">
+          <div class="blog-tag">Tracking</div>
+          <div class="blog-title">How Pharma Companies Can Track MR Daily Activity Without Micromanaging</div>
+          <div class="blog-excerpt">The right system creates accountability without destroying morale. Here's the exact framework 200+ companies use.</div>
+          <div class="blog-cta">Read Article →</div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-thumb" style="background:linear-gradient(135deg,#0a1929,#0d2137)">📉</div>
+        <div class="blog-body">
+          <div class="blog-tag">Operations</div>
+          <div class="blog-title">Why Excel MR Reporting Is Silently Killing Your Pharma Sales Growth</div>
+          <div class="blog-excerpt">Excel feels free. But hidden costs — data errors, delays, fake entries — could be costing you crores annually.</div>
+          <div class="blog-cta">Read Article →</div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-thumb" style="background:linear-gradient(135deg,#050f1a,#0a1929)">🎯</div>
+        <div class="blog-body">
+          <div class="blog-tag">Strategy</div>
+          <div class="blog-title">Top 5 Problems Pharma Sales Managers Face — And How to Fix Them in 2025</div>
+          <div class="blog-excerpt">From fake visits to territory chaos, here's a data-driven playbook that high-performing NSMs are using right now.</div>
+          <div class="blog-cta">Read Article →</div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-thumb" style="background:linear-gradient(135deg,#0d2137,#050f1a)">🏆</div>
+        <div class="blog-body">
+          <div class="blog-tag">Software</div>
+          <div class="blog-title">Best MR Reporting Software in India 2025 — Complete Comparison Guide</div>
+          <div class="blog-excerpt">We compared the top 7 MR reporting apps in India on features, pricing, support, and ease of use. Here's our honest analysis.</div>
+          <div class="blog-cta">Read Article →</div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-thumb" style="background:linear-gradient(135deg,#0a1929,#050f1a)">💰</div>
+        <div class="blog-body">
+          <div class="blog-tag">ROI</div>
+          <div class="blog-title">How to Calculate the True Cost of Fake Field Visits in Your Pharma Team</div>
+          <div class="blog-excerpt">Most pharma companies underestimate this cost by 3x. Here's the actual formula with real numbers from our client data.</div>
+          <div class="blog-cta">Read Article →</div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-thumb" style="background:linear-gradient(135deg,#050f1a,#0d2137)">🗺️</div>
+        <div class="blog-body">
+          <div class="blog-tag">Territory</div>
+          <div class="blog-title">Territory Intelligence: The Secret Weapon of India's Top Pharma Companies</div>
+          <div class="blog-excerpt">How Zydus and Sun Pharma use territory data to dominate coverage — and how smaller companies can do the same.</div>
+          <div class="blog-cta">Read Article →</div>
+        </div>
+      </div>
+    </div>
+    <!-- Lead Magnet -->
+    <div class="magnet-box fade-up">
+      <div style="font-size:2.5rem;margin-bottom:12px">📥</div>
+      <h3>Free Download: MR Daily Activity Format</h3>
+      <p>The editable Excel template 500+ pharma managers use to track daily MR activity, visits, and call outcomes. Yours free — no purchase required.</p>
+      <div class="magnet-input-row">
+        <input type="email" placeholder="Your work email" id="magnetEmail">
+        <button class="btn-primary" onclick="this.textContent='✓ Sent to inbox!'">Download Free</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST ===== -->
+<section class="trust-section">
+  <div class="container">
+    <div class="section-tag">Why Trust Us</div>
+    <h2>Built for Indian Pharma.<br><em>Backed by Real Results.</em></h2>
+    <div class="trust-grid fade-up">
+      <div class="trust-item">
+        <div class="trust-icon">🔒</div>
+        <div class="trust-label">SSL Secured</div>
+        <div class="trust-sub">256-bit encryption on all data</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🏢</div>
+        <div class="trust-label">Registered Company</div>
+        <div class="trust-sub">MCA & GST verified entity</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">📱</div>
+        <div class="trust-label">Works on Any Phone</div>
+        <div class="trust-sub">Android & iOS · Works offline</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🇮🇳</div>
+        <div class="trust-label">Made in India</div>
+        <div class="trust-sub">For Indian pharma workflows</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🎧</div>
+        <div class="trust-label">Dedicated Support</div>
+        <div class="trust-sub">WhatsApp + email + phone</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">⚡</div>
+        <div class="trust-label">48-Hour Go Live</div>
+        <div class="trust-sub">Onboarding & training included</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">☁️</div>
+        <div class="trust-label">Daily Cloud Backup</div>
+        <div class="trust-sub">Your data is always safe</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🔄</div>
+        <div class="trust-label">Free Updates</div>
+        <div class="trust-sub">New features at no extra cost</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DEMO FORM ===== -->
+<section class="form-section" id="demo">
+  <div class="container">
+    <div class="section-tag">Book Your Demo</div>
+    <div class="form-grid">
+      <div class="fade-up">
+        <h2>See PharmaTrack<br><em>Live in 20 Minutes</em></h2>
+        <p class="section-intro">We'll walk you through a personalized demo based on your team size, current challenges, and goals.</p>
+        <div class="form-benefits">
+          <div class="benefit-item">
+            <div class="benefit-check">✓</div>
+            <div class="benefit-text">Live demo tailored to your pharma category and team size</div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-check">✓</div>
+            <div class="benefit-text">See how geo-tracking eliminates fake visits instantly</div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-check">✓</div>
+            <div class="benefit-text">Get a customized ROI estimate for your team</div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-check">✓</div>
+            <div class="benefit-text">Ask any question — no sales pressure, ever</div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-check">✓</div>
+            <div class="benefit-text">30-day pilot available for qualified companies — no payment upfront</div>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up fade-up-d1">
+        <div class="demo-form">
+          <div id="demoForm">
+            <div class="form-title">Book Your Free Demo</div>
+            <div class="form-sub">Response within 2 business hours · 100% confidential</div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Full Name *</label>
+                <input type="text" placeholder="Rajesh Kumar" required>
+              </div>
+              <div class="form-field">
+                <label>Company Name *</label>
+                <input type="text" placeholder="Apex Pharma Ltd." required>
+              </div>
+            </div>
+            <div class="form-field">
+              <label>Your Designation *</label>
+              <select required>
+                <option value="" disabled selected>Select role</option>
+                <option>NSM / VP Sales</option>
+                <option>Regional Sales Manager</option>
+                <option>Area Sales Manager</option>
+                <option>Distributor / Stockist</option>
+                <option>HR / Admin</option>
+                <option>Director / Owner</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>MR Team Size *</label>
+                <select required>
+                  <option value="" disabled selected>Select range</option>
+                  <option>1–10 MRs</option>
+                  <option>11–30 MRs</option>
+                  <option>31–100 MRs</option>
+                  <option>101–300 MRs</option>
+                  <option>300+ MRs</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>State / Region</label>
+                <select>
+                  <option value="" disabled selected>Select state</option>
+                  <option>Maharashtra</option><option>Gujarat</option><option>Rajasthan</option>
+                  <option>Delhi NCR</option><option>Uttar Pradesh</option><option>Karnataka</option>
+                  <option>Andhra Pradesh</option><option>Tamil Nadu</option><option>West Bengal</option>
+                  <option>Telangana</option><option>Kerala</option><option>Punjab</option>
+                  <option>Haryana</option><option>Madhya Pradesh</option><option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-field">
+              <label>Mobile Number *</label>
+              <input type="tel" placeholder="+91 98765 43210" required>
+            </div>
+            <div class="form-field">
+              <label>Work Email *</label>
+              <input type="email" placeholder="you@company.com" required>
+            </div>
+            <div class="form-field">
+              <label>Monthly Sales Volume (Approx)</label>
+              <select>
+                <option value="" disabled selected>Select range</option>
+                <option>Under ₹10 Lakh</option>
+                <option>₹10L – ₹50L</option>
+                <option>₹50L – ₹2Cr</option>
+                <option>₹2Cr – ₹10Cr</option>
+                <option>₹10Cr+</option>
+              </select>
+            </div>
+            <button type="button" class="submit-btn" onclick="handleFormSubmit()">📅 Book My Free Demo →</button>
+          </div>
+          <div class="form-success" id="formSuccess">
+            <div class="success-icon">🎉</div>
+            <h3>Demo Booked!</h3>
+            <p>Our team will reach out within 2 business hours to confirm your slot. Check your WhatsApp and email.</p>
+            <p style="margin-top:12px;font-size:0.82rem">Meanwhile, download your <a href="#" style="color:var(--green)">free MR Activity Template →</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA STRIP ===== -->
+<div class="cta-strip">
+  <div class="container">
+    <div class="section-tag" style="text-align:center">One Last Thing</div>
+    <h2 style="text-align:center">Ready to Finally <em>See</em><br>What Your Team Is Doing?</h2>
+    <p>Join 500+ pharma companies across India who replaced guesswork with PharmaTrack.</p>
+    <div class="hero-actions">
+      <a href="#demo" class="btn-primary">📅 Book Free Demo — 20 Minutes</a>
+      <a href="https://wa.me/919876543210?text=Hi%2C%20I%20want%20to%20see%20a%20demo%20of%20PharmaTrack" class="btn-secondary" target="_blank">💬 Chat on WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#top" class="nav-logo">Pharma<span>Track</span></a>
+        <p>Helping Indian pharma companies and distributors build disciplined, transparent, high-performing MR field teams — with real data, not guesswork.</p>
+        <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
+          <a href="https://wa.me/919876543210" style="background:var(--green-glow);border:1px solid rgba(0,194,122,0.3);color:var(--green);padding:8px 16px;border-radius:6px;font-size:0.8rem;font-weight:600;text-decoration:none" target="_blank">💬 WhatsApp Us</a>
+          <a href="mailto:hello@pharmatrack.in" style="background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--muted);padding:8px 16px;border-radius:6px;font-size:0.8rem;font-weight:600;text-decoration:none">✉️ Email Us</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#solution">MR Reporting App</a>
+        <a href="#solution">Live Sales Dashboard</a>
+        <a href="#solution">Geo Tracking</a>
+        <a href="#solution">DCR Automation</a>
+        <a href="#solution">Territory Planning</a>
+        <a href="#solution">Expense Management</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#case-studies">Case Studies</a>
+        <a href="#blog">Blog</a>
+        <a href="#demo">Book Demo</a>
+        <a href="#">Careers</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal & Trust</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Refund Policy</a>
+        <a href="#">Data Security</a>
+        <a href="#">GST Details</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 PharmaTrack. All rights reserved. | GST: 27XXXXX1234X1ZX | CIN: U72900MH2023PTC1234</div>
+      <div class="footer-copy">Made with ❤️ in India for Indian Pharma</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── ROI Calculator ──
+function formatINR(n) {
+  if (n >= 10000000) return '₹' + (n/10000000).toFixed(1) + 'Cr';
+  if (n >= 100000)   return '₹' + (n/100000).toFixed(1) + 'L';
+  if (n >= 1000)     return '₹' + (n/1000).toFixed(0) + 'K';
+  return '₹' + n;
+}
+function calcROI() {
+  const mrs     = parseInt(document.getElementById('mrCount').value);
+  const salary  = parseInt(document.getElementById('salary').value);
+  const fake    = parseInt(document.getElementById('fakePercent').value);
+  const hours   = parseInt(document.getElementById('managerHours').value);
+  const mgrs    = parseInt(document.getElementById('managerCount').value);
+
+  document.getElementById('mrCountVal').textContent     = mrs + ' MRs';
+  document.getElementById('salaryVal').textContent      = '₹' + salary.toLocaleString('en-IN');
+  document.getElementById('fakeVal').textContent        = fake + '% fake visits';
+  document.getElementById('managerHoursVal').textContent = hours + ' hrs/week';
+  document.getElementById('managerCountVal').textContent = mgrs + (mgrs===1?' manager':' managers');
+
+  const annualSalary = mrs * salary * 12;
+  const fakeCost     = Math.round(annualSalary * fake / 100);
+  const managerCost  = Math.round(mgrs * hours * 52 * 600);
+  const missedSales  = Math.round(fakeCost * 0.8);
+  const total        = fakeCost + managerCost + missedSales;
+  const platCost     = Math.round(mrs * 499 * 12);
+
+  document.getElementById('fakeCost').textContent    = formatINR(fakeCost);
+  document.getElementById('managerCost').textContent = formatINR(managerCost);
+  document.getElementById('missedSales').textContent = formatINR(missedSales);
+  document.getElementById('roiNumber').textContent   = formatINR(total);
+  document.getElementById('platformCost').textContent= formatINR(platCost);
+}
+calcROI();
+
+// ── Tabs ──
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ── Form Submit ──
+function handleFormSubmit() {
+  document.getElementById('demoForm').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+}
+
+// ── Intersection Observer ──
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+// ── Exit Intent Popup ──
+let popupShown = false;
+document.addEventListener('mouseleave', (e) => {
+  if (e.clientY < 60 && !popupShown) {
+    popupShown = true;
+    setTimeout(() => document.getElementById('exitPopup').classList.add('show'), 300);
+  }
+});
+// Mobile: trigger after 60s
+setTimeout(() => {
+  if (!popupShown) {
+    popupShown = true;
+    document.getElementById('exitPopup').classList.add('show');
+  }
+}, 60000);
+
+// ── Animated counter on scroll ──
+function animateCount(el, target, suffix, duration) {
+  let start = 0;
+  const step = Math.ceil(target / (duration / 16));
+  const timer = setInterval(() => {
+    start = Math.min(start + step, target);
+    el.textContent = start.toLocaleString('en-IN') + suffix;
+    if (start >= target) clearInterval(timer);
+  }, 16);
+}
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      statsObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+</script>
+</body>
+</html>
