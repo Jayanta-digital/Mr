@@ -1,0 +1,2159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PharmaTrack — Turn Every Field Visit Into Revenue</title>
+<meta name="description" content="The MR reporting platform that gives pharma sales teams real-time visibility, verified field activity, and measurable revenue growth. Book your free demo today.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   ROOT & RESET
+============================================ */
+:root {
+  --bg: #050D16;
+  --bg2: #090F1A;
+  --bg3: #0D1825;
+  --bg4: #111F30;
+  --bg5: #162840;
+  --lime: #AAFF45;
+  --lime2: #88DD22;
+  --lime-glow: rgba(170,255,69,0.12);
+  --lime-faint: rgba(170,255,69,0.06);
+  --teal: #00E5B4;
+  --amber: #FFB347;
+  --red: #FF5252;
+  --text: #D4E8F8;
+  --muted: #6A8FAD;
+  --faint: #3A5570;
+  --white: #FFFFFF;
+  --border: rgba(255,255,255,0.06);
+  --border2: rgba(170,255,69,0.18);
+  --shadow: 0 32px 80px rgba(0,0,0,0.6);
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'Bricolage Grotesque', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.65;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--lime); border-radius: 2px; }
+
+/* Grain overlay */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)' opacity='0.045'/%3E%3C/svg%3E");
+  opacity: 0.7;
+}
+
+/* ============================================
+   NAVIGATION
+============================================ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: 70px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 56px;
+  background: rgba(5,13,22,0.75);
+  backdrop-filter: blur(28px) saturate(160%);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex; align-items: center; gap: 11px;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 800; font-size: 1.2rem;
+  color: var(--white); letter-spacing: -0.02em;
+}
+.logo-icon {
+  width: 32px; height: 32px;
+  background: var(--lime);
+  border-radius: 8px;
+  display: grid; place-items: center;
+  flex-shrink: 0;
+}
+.logo-icon svg { width: 18px; height: 18px; }
+
+.nav-links { display: flex; align-items: center; gap: 36px; }
+.nav-links a {
+  color: var(--muted); text-decoration: none;
+  font-size: 0.88rem; font-weight: 400;
+  transition: color 0.2s; letter-spacing: 0.01em;
+}
+.nav-links a:hover { color: var(--text); }
+
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+.btn-outline-sm {
+  padding: 8px 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted); font-size: 0.85rem;
+  text-decoration: none; transition: all 0.2s;
+  font-family: var(--font-body);
+}
+.btn-outline-sm:hover { border-color: rgba(255,255,255,0.15); color: var(--text); }
+.btn-nav-cta {
+  padding: 9px 22px;
+  background: var(--lime); color: var(--bg);
+  border-radius: 8px; border: none; cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 0.88rem;
+  text-decoration: none; letter-spacing: -0.01em;
+  transition: all 0.2s; display: inline-block;
+}
+.btn-nav-cta:hover { background: #BFFF66; transform: translateY(-1px); box-shadow: 0 8px 28px rgba(170,255,69,0.3); }
+
+/* ============================================
+   HERO
+============================================ */
+.hero {
+  min-height: 100vh;
+  padding: 130px 56px 80px;
+  display: grid;
+  grid-template-columns: 55% 45%;
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated BG */
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 75% 50%, rgba(170,255,69,0.06) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 20% 70%, rgba(0,229,180,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 30% at 80% 15%, rgba(170,255,69,0.04) 0%, transparent 55%);
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 40%, transparent 100%);
+}
+
+/* Hero Content */
+.hero-left { position: relative; z-index: 2; }
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 6px 14px 6px 8px;
+  background: var(--lime-faint);
+  border: 1px solid var(--border2);
+  border-radius: 100px;
+  margin-bottom: 32px;
+  animation: fadeSlideUp 0.7s both;
+}
+.badge-pill {
+  background: var(--lime); color: var(--bg);
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 0.68rem;
+  padding: 3px 10px; border-radius: 100px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.badge-text {
+  font-size: 0.8rem; color: var(--lime);
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+.badge-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--lime); margin-left: 2px;
+  animation: blink 1.6s step-end infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+.hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 5.8vw, 5.2rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  color: var(--white);
+  margin-bottom: 24px;
+  animation: fadeSlideUp 0.7s 0.1s both;
+}
+.hero-headline .lime { color: var(--lime); }
+.hero-headline .outlined {
+  -webkit-text-stroke: 1.5px rgba(255,255,255,0.22);
+  color: transparent;
+}
+
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 500px;
+  line-height: 1.78;
+  margin-bottom: 40px;
+  animation: fadeSlideUp 0.7s 0.2s both;
+}
+
+.hero-ctas {
+  display: flex; gap: 14px; align-items: center;
+  flex-wrap: wrap; margin-bottom: 56px;
+  animation: fadeSlideUp 0.7s 0.3s both;
+}
+.btn-primary {
+  background: var(--lime); color: var(--bg);
+  padding: 15px 30px; border-radius: 10px;
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 0.96rem;
+  text-decoration: none; border: none; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 9px;
+  transition: all 0.25s; letter-spacing: -0.01em;
+}
+.btn-primary:hover {
+  background: #BFFF66;
+  transform: translateY(-2px);
+  box-shadow: 0 20px 56px rgba(170,255,69,0.32);
+}
+.btn-primary .arrow {
+  transition: transform 0.2s;
+  display: inline-block;
+}
+.btn-primary:hover .arrow { transform: translateX(4px); }
+.btn-secondary {
+  background: transparent; color: var(--text);
+  padding: 14px 26px; border-radius: 10px;
+  font-weight: 500; font-size: 0.96rem;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  transition: all 0.25s;
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { border-color: rgba(255,255,255,0.16); background: rgba(255,255,255,0.04); }
+
+.hero-social-proof {
+  display: flex; align-items: center; gap: 24px;
+  animation: fadeSlideUp 0.7s 0.4s both;
+}
+.avatars { display: flex; }
+.av {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 2px solid var(--bg);
+  background: var(--bg5);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.65rem; font-weight: 700;
+  color: var(--lime); margin-left: -8px;
+}
+.av:first-child { margin-left: 0; }
+.proof-text { font-size: 0.85rem; color: var(--muted); }
+.proof-text strong { color: var(--text); font-weight: 600; }
+.proof-div { width: 1px; height: 32px; background: var(--border); }
+.stars { color: #FFB347; font-size: 0.85rem; letter-spacing: 1px; }
+.rating-text { font-size: 0.82rem; color: var(--muted); }
+
+/* ============================================
+   HERO DASHBOARD MOCKUP
+============================================ */
+.hero-right {
+  position: relative; z-index: 2;
+  display: flex; justify-content: flex-end;
+  animation: fadeSlideUp 0.8s 0.25s both;
+}
+
+.dash-wrap {
+  width: 100%; max-width: 580px;
+  position: relative;
+}
+
+.dash-card {
+  background: rgba(13,24,37,0.95);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.dash-titlebar {
+  display: flex; align-items: center;
+  padding: 13px 18px;
+  background: var(--bg4);
+  border-bottom: 1px solid var(--border);
+  gap: 10px;
+}
+.tbar-dots { display: flex; gap: 6px; }
+.td { width: 11px; height: 11px; border-radius: 50%; }
+.td-r { background: #FF5F57; }
+.td-y { background: #FEBC2E; }
+.td-g { background: #28C840; }
+.tbar-label {
+  flex: 1; text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.68rem; color: var(--muted); letter-spacing: 0.05em;
+}
+.tbar-live {
+  display: flex; align-items: center; gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem; color: var(--lime);
+}
+.live-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--lime); animation: livePulse 1.4s ease-in-out infinite;
+}
+@keyframes livePulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.35;transform:scale(0.7)} }
+
+.dash-inner { padding: 18px; }
+
+/* KPI Row */
+.kpi-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 14px; }
+.kpi-box {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px;
+  position: relative; overflow: hidden;
+  transition: border-color 0.3s;
+}
+.kpi-box:hover { border-color: var(--border2); }
+.kpi-box::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--lime); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s;
+}
+.kpi-box:hover::after { transform: scaleX(1); }
+.kpi-lbl { font-family: var(--font-mono); font-size: 0.58rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 6px; }
+.kpi-val { font-family: var(--font-display); font-size: 1.7rem; font-weight: 700; line-height: 1; color: var(--white); }
+.kpi-val.lime { color: var(--lime); }
+.kpi-val.teal { color: var(--teal); }
+.kpi-change { font-size: 0.62rem; color: var(--muted); margin-top: 5px; display: flex; align-items: center; gap: 3px; }
+.kpi-change.up { color: var(--lime); }
+.kpi-change.down { color: var(--red); }
+
+/* Chart */
+.chart-box {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px; margin-bottom: 12px;
+}
+.chart-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.chart-ttl { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-family: var(--font-mono); }
+.chart-period { font-family: var(--font-mono); font-size: 0.62rem; color: var(--lime); }
+.bar-chart { display: flex; align-items: flex-end; gap: 5px; height: 64px; }
+.bc { flex: 1; border-radius: 4px 4px 0 0; animation: barUp 1.2s ease both; transform-origin: bottom; }
+@keyframes barUp { from{transform:scaleY(0);opacity:0} to{transform:scaleY(1);opacity:1} }
+.bc.lime { background: linear-gradient(to top, var(--lime), rgba(170,255,69,0.25)); }
+.bc.teal { background: linear-gradient(to top, var(--teal), rgba(0,229,180,0.2)); }
+.bc.dim { background: var(--bg4); }
+
+/* MR Activity Table */
+.table-box {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden; margin-bottom: 12px;
+}
+.table-head {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  padding: 8px 14px;
+  background: var(--bg4);
+  border-bottom: 1px solid var(--border);
+}
+.th { font-family: var(--font-mono); font-size: 0.58rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+.t-row {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  padding: 9px 14px; align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.025);
+  transition: background 0.2s;
+}
+.t-row:last-child { border-bottom: none; }
+.t-row:hover { background: rgba(170,255,69,0.025); }
+.mr-cell { display: flex; align-items: center; gap: 8px; }
+.mr-av {
+  width: 22px; height: 22px; border-radius: 6px;
+  background: var(--bg5); color: var(--lime);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 0.58rem; font-weight: 700;
+}
+.mr-nm { font-size: 0.72rem; color: var(--text); }
+.t-val { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); }
+.t-badge {
+  display: inline-block; font-size: 0.58rem; font-weight: 600;
+  padding: 2px 8px; border-radius: 100px;
+  font-family: var(--font-mono);
+}
+.t-badge.g { background: var(--lime-faint); color: var(--lime); }
+.t-badge.a { background: rgba(255,179,71,0.1); color: var(--amber); }
+.t-badge.r { background: rgba(255,82,82,0.1); color: var(--red); }
+
+/* Map mini */
+.map-strip {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 12px;
+  display: flex; gap: 10px; align-items: center;
+}
+.map-area {
+  flex: 1; height: 54px; border-radius: 8px;
+  background: linear-gradient(135deg, #071520 0%, #0A2030 60%, #060F18 100%);
+  position: relative; overflow: hidden;
+}
+.map-grid-lines {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(170,255,69,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(170,255,69,0.05) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+.pin {
+  position: absolute;
+  width: 7px; height: 7px; border-radius: 50%;
+}
+.pin::after {
+  content: ''; position: absolute; inset: -3px; border-radius: 50%;
+  border: 1px solid currentColor; opacity: 0.4;
+  animation: ripple 2s ease-in-out infinite;
+}
+@keyframes ripple { 0%{transform:scale(1);opacity:0.4} 100%{transform:scale(2.8);opacity:0} }
+.pin.g { background: var(--lime); color: var(--lime); box-shadow: 0 0 8px var(--lime); top: 30%; left: 25%; animation-delay: 0s; }
+.pin.t { background: var(--teal); color: var(--teal); box-shadow: 0 0 8px var(--teal); top: 55%; left: 55%; animation-delay: -0.7s; }
+.pin.a { background: var(--amber); color: var(--amber); box-shadow: 0 0 8px var(--amber); top: 20%; left: 70%; animation-delay: -1.4s; }
+.map-info { display: flex; flex-direction: column; gap: 5px; }
+.map-stat { display: flex; align-items: center; gap: 7px; font-size: 0.7rem; color: var(--muted); }
+.map-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+/* Floating toast */
+.toast {
+  position: absolute; bottom: -12px; right: 16px;
+  background: var(--bg4);
+  border: 1px solid var(--border2);
+  border-radius: 12px; padding: 10px 16px;
+  display: flex; align-items: center; gap: 10px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 0 1px var(--border);
+  animation: toastSlide 0.6s 1.8s both;
+  min-width: 240px;
+}
+@keyframes toastSlide { from{transform:translateY(16px);opacity:0} to{transform:translateY(0);opacity:1} }
+.toast-icon { font-size: 1.3rem; }
+.toast-content .toast-title { font-size: 0.75rem; color: var(--white); font-weight: 600; line-height: 1.2; }
+.toast-content .toast-sub { font-size: 0.68rem; color: var(--muted); margin-top: 2px; }
+.toast-content .toast-sub span { color: var(--lime); font-weight: 600; }
+
+/* ============================================
+   TICKER BAND
+============================================ */
+.ticker-band {
+  background: var(--lime);
+  overflow: hidden; padding: 11px 0;
+}
+.ticker-track {
+  display: flex; gap: 0;
+  animation: ticker 28s linear infinite;
+  width: max-content;
+}
+@keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.tick-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0 36px; white-space: nowrap;
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 0.78rem;
+  color: var(--bg); text-transform: uppercase; letter-spacing: 0.08em;
+}
+.tick-sep { opacity: 0.25; font-size: 1.2rem; }
+
+/* ============================================
+   PROBLEM SECTION
+============================================ */
+.problems {
+  padding: 100px 56px;
+  background: var(--bg2);
+  position: relative;
+}
+.problems::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(170,255,69,0.03) 0%, transparent 60%);
+}
+
+.section-eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 20px;
+}
+.eyebrow-line { width: 24px; height: 1px; background: var(--lime); }
+.eyebrow-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem; color: var(--lime);
+  text-transform: uppercase; letter-spacing: 0.18em;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+  font-weight: 700; line-height: 1.08;
+  color: var(--white); letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+.section-title .lime { color: var(--lime); }
+.section-title .dim {
+  -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+  color: transparent;
+}
+
+.section-sub { font-size: 1rem; color: var(--muted); max-width: 500px; line-height: 1.75; }
+
+.prob-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 56px; }
+
+.prob-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+.prob-card {
+  background: var(--bg3);
+  padding: 36px 30px;
+  cursor: default;
+  transition: background 0.25s;
+  position: relative; overflow: hidden;
+}
+.prob-card:hover { background: var(--bg4); }
+.prob-card::before {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: var(--red); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.prob-card:hover::before { transform: scaleX(1); }
+.prob-num {
+  font-family: var(--font-mono);
+  font-size: 0.65rem; color: var(--faint);
+  letter-spacing: 0.1em; margin-bottom: 20px;
+}
+.prob-emoji { font-size: 2.2rem; margin-bottom: 18px; display: block; }
+.prob-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem; font-weight: 600;
+  color: var(--white); margin-bottom: 12px;
+  letter-spacing: -0.02em; line-height: 1.2;
+}
+.prob-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+.prob-cost {
+  margin-top: 20px; padding-top: 16px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; gap: 7px;
+}
+.prob-cost-label { font-size: 0.72rem; color: var(--muted); }
+.prob-cost-val { font-family: var(--font-mono); font-size: 0.78rem; color: var(--red); font-weight: 600; }
+
+/* ============================================
+   SOLUTION SECTION
+============================================ */
+.solution {
+  padding: 100px 56px;
+  background: var(--bg);
+}
+
+.solution-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 64px; }
+
+.features-list { display: flex; flex-direction: column; gap: 6px; }
+.feat-item {
+  display: flex; gap: 18px;
+  padding: 22px 20px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: all 0.25s;
+  cursor: default;
+}
+.feat-item:hover {
+  background: var(--bg3);
+  border-color: var(--border);
+}
+.feat-num {
+  font-family: var(--font-mono);
+  font-size: 0.62rem; color: var(--faint);
+  min-width: 22px; margin-top: 4px;
+}
+.feat-body h3 {
+  font-family: var(--font-display);
+  font-size: 0.98rem; font-weight: 600;
+  color: var(--white); margin-bottom: 7px;
+  letter-spacing: -0.01em;
+}
+.feat-body p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+.feat-tag {
+  display: inline-block; margin-top: 8px;
+  font-family: var(--font-mono); font-size: 0.6rem;
+  color: var(--lime); letter-spacing: 0.06em; text-transform: uppercase;
+}
+
+/* Big App Preview */
+.app-preview {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 20px; overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.app-chrome {
+  display: flex; align-items: center; padding: 13px 18px;
+  background: var(--bg4); border-bottom: 1px solid var(--border);
+  gap: 12px;
+}
+.app-dots { display: flex; gap: 6px; }
+.app-dot { width: 10px; height: 10px; border-radius: 50%; }
+.app-preview-inner { padding: 20px; }
+.preview-kpis { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-bottom: 14px; }
+.p-kpi {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px;
+}
+.p-kpi-label { font-family: var(--font-mono); font-size: 0.55rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+.p-kpi-val {
+  font-family: var(--font-display);
+  font-size: 1.3rem; font-weight: 700; color: var(--white);
+  margin-top: 4px; line-height: 1;
+}
+.p-kpi-val.lime { color: var(--lime); }
+.p-kpi-val.teal { color: var(--teal); }
+.p-kpi-val.amber { color: var(--amber); }
+
+/* Area chart SVG */
+.area-chart-box {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px; margin-bottom: 12px;
+}
+.area-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.area-title { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.area-val { font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; color: var(--lime); }
+svg.area { width: 100%; height: 70px; overflow: visible; }
+
+/* Territory map */
+.terr-map {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+.terr-box {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px;
+}
+.terr-title { font-family: var(--font-mono); font-size: 0.62rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+.terr-bars { display: flex; flex-direction: column; gap: 8px; }
+.terr-bar-row { display: flex; flex-direction: column; gap: 4px; }
+.terr-bar-label { font-size: 0.65rem; color: var(--muted); display: flex; justify-content: space-between; }
+.terr-bar-track { height: 5px; background: var(--bg); border-radius: 3px; overflow: hidden; }
+.terr-bar-fill { height: 100%; border-radius: 3px; }
+
+/* ============================================
+   ROI CALCULATOR
+============================================ */
+.roi-section {
+  padding: 100px 56px;
+  background: var(--bg2);
+  position: relative; overflow: hidden;
+}
+.roi-section::after {
+  content: 'ROI';
+  position: absolute; right: -2%; top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: 22vw; font-weight: 800;
+  color: rgba(255,255,255,0.012);
+  letter-spacing: -0.05em;
+  pointer-events: none; user-select: none;
+}
+
+.roi-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 72px; margin-top: 60px; align-items: start; }
+
+.roi-sliders { display: flex; flex-direction: column; gap: 28px; }
+.slider-block {}
+.slider-label {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 10px;
+}
+.slider-label span { font-size: 0.875rem; color: var(--muted); font-weight: 500; }
+.slider-label .sval {
+  font-family: var(--font-mono); font-size: 0.88rem; color: var(--lime);
+}
+input[type=range] {
+  -webkit-appearance: none; width: 100%;
+  height: 3px; background: var(--border);
+  border-radius: 2px; outline: none; cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--lime); border: 3px solid var(--bg);
+  box-shadow: 0 0 12px rgba(170,255,69,0.4);
+  cursor: pointer; transition: transform 0.2s;
+}
+input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+input[type=range]::-webkit-slider-runnable-track { height: 3px; border-radius: 2px; }
+
+.roi-results {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 20px; padding: 36px;
+  position: sticky; top: 88px;
+}
+.roi-header { text-align: center; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+.roi-header-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; }
+.roi-big-num {
+  font-family: var(--font-display);
+  font-size: 3.8rem; font-weight: 800;
+  color: var(--lime); line-height: 1; margin: 10px 0 6px;
+  letter-spacing: -0.04em;
+}
+.roi-big-sub { font-size: 0.82rem; color: var(--muted); }
+
+.roi-breakdown { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
+.roi-line {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+  font-size: 0.875rem;
+}
+.roi-line:last-child { border-bottom: none; }
+.roi-line-label { color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.roi-dot { width: 6px; height: 6px; border-radius: 50%; }
+.roi-line-val { font-family: var(--font-mono); font-weight: 600; }
+.roi-line-val.neg { color: var(--red); }
+.roi-line-val.pos { color: var(--lime); }
+
+.roi-cta-box {
+  background: var(--lime-faint);
+  border: 1px solid var(--border2);
+  border-radius: 12px; padding: 20px; text-align: center;
+}
+.roi-cta-box p { font-size: 0.85rem; color: var(--muted); margin-bottom: 14px; }
+.roi-cta-box p strong { color: var(--text); }
+
+/* ============================================
+   CASE STUDY
+============================================ */
+.case-section {
+  padding: 100px 56px;
+  background: var(--bg);
+}
+.case-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  overflow: hidden;
+  margin-top: 60px;
+  display: grid; grid-template-columns: 1fr 1fr;
+}
+.case-left {
+  padding: 56px 52px;
+  border-right: 1px solid var(--border);
+}
+.case-tag {
+  display: inline-block;
+  background: var(--lime-faint); border: 1px solid var(--border2);
+  color: var(--lime); font-family: var(--font-mono);
+  font-size: 0.65rem; padding: 4px 12px; border-radius: 100px;
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px;
+}
+.case-left h3 {
+  font-family: var(--font-display);
+  font-size: 1.6rem; font-weight: 700; color: var(--white);
+  line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 16px;
+}
+.case-left p { font-size: 0.9rem; color: var(--muted); line-height: 1.75; margin-bottom: 24px; }
+.case-company { font-size: 0.8rem; color: var(--faint); }
+.case-company strong { color: var(--muted); }
+
+.case-right { padding: 56px 52px; display: flex; flex-direction: column; justify-content: center; gap: 28px; }
+.before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.ba-block {
+  background: var(--bg4);
+  border: 1px solid var(--border);
+  border-radius: 14px; padding: 22px;
+}
+.ba-block.after { border-color: var(--border2); background: var(--lime-faint); }
+.ba-label {
+  font-family: var(--font-mono); font-size: 0.62rem;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--muted); margin-bottom: 18px;
+}
+.ba-block.after .ba-label { color: var(--lime); }
+.ba-metrics { display: flex; flex-direction: column; gap: 12px; }
+.ba-metric {}
+.ba-metric-val {
+  font-family: var(--font-display);
+  font-size: 1.5rem; font-weight: 700; color: var(--white); line-height: 1;
+}
+.ba-block.after .ba-metric-val { color: var(--lime); }
+.ba-metric-label { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+
+/* ============================================
+   TESTIMONIALS
+============================================ */
+.testi-section {
+  padding: 100px 56px;
+  background: var(--bg2);
+}
+.testi-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 16px; margin-top: 60px;
+}
+.testi-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 20px; padding: 32px;
+  transition: all 0.25s;
+  position: relative;
+}
+.testi-card:hover { transform: translateY(-4px); border-color: rgba(170,255,69,0.12); }
+.testi-card::before {
+  content: '"';
+  position: absolute; top: 20px; right: 26px;
+  font-family: var(--font-display);
+  font-size: 5rem; font-weight: 800;
+  color: rgba(170,255,69,0.06); line-height: 1;
+}
+.testi-stars { font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 18px; color: var(--amber); }
+.testi-text { font-size: 0.94rem; color: var(--text); line-height: 1.75; font-style: italic; margin-bottom: 24px; }
+.testi-author { display: flex; align-items: center; gap: 12px; padding-top: 20px; border-top: 1px solid var(--border); }
+.testi-av {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--bg5); display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 700; font-size: 0.9rem; color: var(--lime);
+  flex-shrink: 0;
+}
+.testi-name { font-weight: 600; font-size: 0.9rem; color: var(--white); }
+.testi-role { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+.testi-company { font-size: 0.72rem; color: var(--faint); margin-top: 1px; }
+
+/* ============================================
+   LEAD CAPTURE FORM
+============================================ */
+.form-section {
+  padding: 100px 56px;
+  background: var(--bg);
+  position: relative; overflow: hidden;
+}
+.form-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(170,255,69,0.04) 0%, transparent 65%);
+}
+
+.form-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 60px; }
+.form-left {}
+.form-value-props { display: flex; flex-direction: column; gap: 18px; margin-top: 36px; }
+.value-prop { display: flex; gap: 14px; align-items: flex-start; }
+.vp-check {
+  width: 22px; height: 22px; border-radius: 6px;
+  background: var(--lime-faint); border: 1px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--lime); font-size: 0.7rem; flex-shrink: 0; margin-top: 2px;
+}
+.vp-text { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+.vp-text strong { color: var(--text); }
+
+.form-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 20px; padding: 40px;
+  position: relative;
+}
+.form-card::before {
+  content: '';
+  position: absolute; top: 0; left: 40px; right: 40px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--lime), transparent);
+  border-radius: 100px;
+}
+.form-card-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem; font-weight: 700; color: var(--white);
+  margin-bottom: 6px; letter-spacing: -0.02em;
+}
+.form-card-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 28px; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-field { margin-bottom: 14px; }
+.form-field label { display: block; font-size: 0.78rem; color: var(--muted); margin-bottom: 7px; font-weight: 500; letter-spacing: 0.02em; }
+.form-field input,
+.form-field select {
+  width: 100%;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 15px;
+  color: var(--text);
+  font-size: 0.9rem; font-family: var(--font-body);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  -webkit-appearance: none;
+}
+.form-field input:focus,
+.form-field select:focus {
+  border-color: var(--lime);
+  box-shadow: 0 0 0 3px rgba(170,255,69,0.08);
+}
+.form-field select option { background: var(--bg2); }
+.form-field input::placeholder { color: var(--faint); }
+
+.form-submit {
+  width: 100%; padding: 15px;
+  background: var(--lime); color: var(--bg);
+  border: none; border-radius: 10px; cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 1rem;
+  letter-spacing: -0.01em;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  transition: all 0.25s; margin-top: 6px;
+}
+.form-submit:hover { background: #BFFF66; transform: translateY(-2px); box-shadow: 0 16px 48px rgba(170,255,69,0.3); }
+.form-trust { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 16px; }
+.trust-item { display: flex; align-items: center; gap: 5px; font-size: 0.72rem; color: var(--faint); }
+
+/* Success State */
+.form-success { display: none; text-align: center; padding: 48px 24px; }
+.success-icon { font-size: 4rem; margin-bottom: 16px; }
+.success-title { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.success-sub { font-size: 0.9rem; color: var(--muted); }
+
+/* ============================================
+   RESOURCES SECTION
+============================================ */
+.resources {
+  padding: 100px 56px;
+  background: var(--bg2);
+}
+.resource-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 56px; }
+.resource-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 18px; overflow: hidden;
+  transition: all 0.25s; cursor: default;
+}
+.resource-card:hover { transform: translateY(-5px); border-color: rgba(170,255,69,0.14); }
+.resource-thumb {
+  height: 140px; display: flex; align-items: center; justify-content: center;
+  font-size: 3.5rem; position: relative; overflow: hidden;
+}
+.resource-body { padding: 24px; }
+.resource-tag { font-family: var(--font-mono); font-size: 0.62rem; color: var(--lime); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+.resource-title { font-family: var(--font-display); font-size: 0.98rem; font-weight: 600; color: var(--white); line-height: 1.35; margin-bottom: 10px; letter-spacing: -0.01em; }
+.resource-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+.resource-cta { display: flex; align-items: center; gap: 5px; font-size: 0.8rem; color: var(--lime); margin-top: 16px; font-weight: 500; }
+
+/* ============================================
+   TRUST SECTION
+============================================ */
+.trust-section {
+  padding: 80px 56px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.trust-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 16px; margin-top: 48px; }
+.trust-box {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 14px; padding: 22px 18px; text-align: center;
+  transition: border-color 0.25s;
+}
+.trust-box:hover { border-color: var(--border2); }
+.trust-box-icon { font-size: 1.8rem; margin-bottom: 10px; }
+.trust-box-title { font-size: 0.82rem; color: var(--text); font-weight: 600; margin-bottom: 4px; }
+.trust-box-sub { font-size: 0.72rem; color: var(--muted); line-height: 1.4; }
+
+/* ============================================
+   FOOTER
+============================================ */
+footer {
+  padding: 72px 56px 36px;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+}
+.footer-top {
+  display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr;
+  gap: 56px; margin-bottom: 56px;
+}
+.footer-brand-desc { font-size: 0.875rem; color: var(--muted); max-width: 280px; line-height: 1.75; margin-top: 14px; }
+.footer-wa {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(37,211,102,0.1); border: 1px solid rgba(37,211,102,0.2);
+  color: #25D366; padding: 9px 18px; border-radius: 8px;
+  font-size: 0.82rem; font-weight: 600; text-decoration: none;
+  margin-top: 20px; transition: all 0.2s;
+}
+.footer-wa:hover { background: rgba(37,211,102,0.18); }
+.footer-col h4 { font-family: var(--font-display); font-size: 0.85rem; font-weight: 600; color: var(--white); margin-bottom: 20px; letter-spacing: -0.01em; }
+.footer-col a {
+  display: block; font-size: 0.85rem; color: var(--muted);
+  text-decoration: none; margin-bottom: 12px; transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--text); }
+.footer-bottom {
+  border-top: 1px solid var(--border); padding-top: 28px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-copy { font-size: 0.78rem; color: var(--faint); }
+.footer-gst { font-family: var(--font-mono); font-size: 0.7rem; color: var(--faint); }
+
+/* ============================================
+   FLOATING ELEMENTS
+============================================ */
+.wa-btn {
+  position: fixed; bottom: 28px; right: 28px;
+  width: 58px; height: 58px; border-radius: 50%;
+  background: #25D366;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; text-decoration: none; z-index: 998;
+  box-shadow: 0 8px 28px rgba(37,211,102,0.45);
+  transition: all 0.2s;
+  animation: popIn 0.5s 2s both;
+}
+@keyframes popIn { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
+.wa-btn:hover { transform: scale(1.1); box-shadow: 0 12px 36px rgba(37,211,102,0.55); }
+
+.sticky-cta {
+  position: fixed; top: 50%; right: 0;
+  transform: translateY(-50%);
+  background: var(--lime); color: var(--bg);
+  writing-mode: vertical-rl; text-orientation: mixed;
+  padding: 18px 12px; border-radius: 10px 0 0 10px;
+  font-family: var(--font-display);
+  font-size: 0.78rem; font-weight: 700;
+  text-decoration: none; letter-spacing: 0.06em;
+  z-index: 997; transition: all 0.25s;
+}
+.sticky-cta:hover { padding-left: 18px; box-shadow: -8px 0 32px rgba(170,255,69,0.25); }
+
+/* Exit Popup */
+.exit-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.75); z-index: 9000;
+  align-items: center; justify-content: center;
+  backdrop-filter: blur(12px);
+}
+.exit-overlay.show { display: flex; }
+.exit-card {
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: 24px; padding: 56px 48px;
+  max-width: 500px; width: 90%; text-align: center;
+  position: relative; box-shadow: var(--shadow);
+}
+.exit-close {
+  position: absolute; top: 18px; right: 22px;
+  background: none; border: none; color: var(--muted);
+  font-size: 1.4rem; cursor: pointer; line-height: 1;
+  transition: color 0.2s;
+}
+.exit-close:hover { color: var(--text); }
+.exit-emoji { font-size: 3.5rem; margin-bottom: 18px; }
+.exit-title { font-family: var(--font-display); font-size: 1.9rem; font-weight: 700; color: var(--white); margin-bottom: 10px; letter-spacing: -0.03em; line-height: 1.1; }
+.exit-sub { font-size: 0.9rem; color: var(--muted); margin-bottom: 28px; line-height: 1.65; }
+.exit-input {
+  width: 100%; background: var(--bg2);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 13px 16px; color: var(--text);
+  font-size: 0.9rem; font-family: var(--font-body);
+  outline: none; margin-bottom: 12px; transition: border-color 0.2s;
+}
+.exit-input:focus { border-color: var(--lime); }
+.exit-note { font-size: 0.72rem; color: var(--faint); margin-top: 12px; }
+
+/* ============================================
+   ANIMATIONS & SCROLL REVEAL
+============================================ */
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+@media (max-width: 1024px) {
+  nav { padding: 0 28px; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; padding: 120px 28px 60px; gap: 52px; }
+  .hero-right { justify-content: center; }
+  .prob-grid { grid-template-columns: 1fr 1fr; }
+  .solution-layout { grid-template-columns: 1fr; gap: 48px; }
+  .roi-layout { grid-template-columns: 1fr; gap: 40px; }
+  .case-card { grid-template-columns: 1fr; }
+  .case-left { border-right: none; border-bottom: 1px solid var(--border); }
+  .testi-grid { grid-template-columns: 1fr 1fr; }
+  .form-layout { grid-template-columns: 1fr; gap: 48px; }
+  .trust-grid { grid-template-columns: repeat(3,1fr); }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
+  section, .hero, .problems, .solution, .roi-section, .case-section, .testi-section, .form-section, .resources, .trust-section { padding-left: 28px; padding-right: 28px; }
+  .resource-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .prob-grid { grid-template-columns: 1fr; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .before-after { grid-template-columns: 1fr; }
+  .trust-grid { grid-template-columns: repeat(2,1fr); }
+  .footer-top { grid-template-columns: 1fr; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .preview-kpis { grid-template-columns: repeat(2,1fr); }
+  .sticky-cta { display: none; }
+  .hero-headline { font-size: 2.8rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- FLOATING WA & STICKY -->
+<a href="https://wa.me/919999999999?text=Hi%2C+I+want+to+book+a+free+demo+of+PharmaTrack" target="_blank" class="wa-btn" title="Chat on WhatsApp">💬</a>
+<a href="#demo" class="sticky-cta">Book Demo</a>
+
+<!-- EXIT POPUP -->
+<div class="exit-overlay" id="exitPopup">
+  <div class="exit-card">
+    <button class="exit-close" onclick="closeExit()">✕</button>
+    <div class="exit-emoji">📥</div>
+    <div class="exit-title">Before You Leave — Get This Free</div>
+    <p class="exit-sub">Download our <strong style="color:var(--text)">Editable MR Daily Reporting Template</strong> — the same format used by 300+ pharma teams. No cost, yours instantly.</p>
+    <input type="email" class="exit-input" placeholder="Enter your work email address">
+    <button class="btn-primary" style="width:100%;justify-content:center" onclick="sendTemplate(this)">
+      📩 Send Me The Free Template <span class="arrow">→</span>
+    </button>
+    <p class="exit-note">You'll also get 1 follow-up email with tips on automating your MR reporting. Unsubscribe anytime.</p>
+  </div>
+</div>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 14L7 8L10 11L13 6L16 9" stroke="#050D16" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="16" cy="9" r="1.5" fill="#050D16"/>
+      </svg>
+    </div>
+    PharmaTrack
+  </a>
+  <div class="nav-links">
+    <a href="#problems">Why It Matters</a>
+    <a href="#solution">Features</a>
+    <a href="#roi">ROI Calculator</a>
+    <a href="#resources">Resources</a>
+    <a href="#demo">Demo</a>
+  </div>
+  <div class="nav-actions">
+    <a href="#demo" class="btn-outline-sm">Sign In</a>
+    <a href="#demo" class="btn-nav-cta">Book Free Demo</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-left">
+    <div class="hero-badge">
+      <span class="badge-pill">NEW</span>
+      <span class="badge-text">Live geo-tracking now available</span>
+      <span class="badge-dot"></span>
+    </div>
+
+    <h1 class="hero-headline">
+      Turn Every<br>Field Visit Into<br><span class="lime">Revenue.</span>
+    </h1>
+
+    <p class="hero-sub">
+      Stop chasing WhatsApp reports. PharmaTrack gives your MR team a mobile app and gives you a real-time dashboard — verified visits, live activity, and the sales intelligence to grow faster.
+    </p>
+
+    <div class="hero-ctas">
+      <a href="#demo" class="btn-primary">Book Free Demo <span class="arrow">→</span></a>
+      <a href="#roi" class="btn-secondary">📊 Calculate My ROI</a>
+    </div>
+
+    <div class="hero-social-proof">
+      <div class="avatars">
+        <div class="av">VK</div>
+        <div class="av">SP</div>
+        <div class="av">RM</div>
+        <div class="av">AJ</div>
+        <div class="av">+</div>
+      </div>
+      <div class="proof-text"><strong>500+</strong> pharma companies trust PharmaTrack</div>
+      <div class="proof-div"></div>
+      <div>
+        <div class="stars">★★★★★</div>
+        <div class="rating-text">4.9 / 5.0 rating</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="dash-wrap">
+      <div class="dash-card">
+        <div class="dash-titlebar">
+          <div class="tbar-dots">
+            <div class="td td-r"></div>
+            <div class="td td-y"></div>
+            <div class="td td-g"></div>
+          </div>
+          <div class="tbar-label">pharmatrack.io/dashboard</div>
+          <div class="tbar-live"><div class="live-dot"></div> LIVE</div>
+        </div>
+        <div class="dash-inner">
+          <!-- KPIs -->
+          <div class="kpi-row">
+            <div class="kpi-box">
+              <div class="kpi-lbl">Visits Today</div>
+              <div class="kpi-val lime">248</div>
+              <div class="kpi-change up">↑ 14% vs yesterday</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-lbl">Active MRs</div>
+              <div class="kpi-val">34<span style="font-size:0.85rem;color:var(--muted)">/38</span></div>
+              <div class="kpi-change">4 offline</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-lbl">Target Hit</div>
+              <div class="kpi-val teal">87%</div>
+              <div class="kpi-change up">↑ On track</div>
+            </div>
+          </div>
+
+          <!-- Chart -->
+          <div class="chart-box">
+            <div class="chart-top">
+              <div class="chart-ttl">Weekly Visit Trend</div>
+              <div class="chart-period">This Week</div>
+            </div>
+            <div class="bar-chart">
+              <div class="bc dim" style="height:42%" data-delay="0.05"></div>
+              <div class="bc lime" style="height:58%" data-delay="0.1"></div>
+              <div class="bc lime" style="height:50%" data-delay="0.15"></div>
+              <div class="bc lime" style="height:72%" data-delay="0.2"></div>
+              <div class="bc teal" style="height:65%" data-delay="0.25"></div>
+              <div class="bc lime" style="height:88%" data-delay="0.3"></div>
+              <div class="bc lime" style="height:93%" data-delay="0.35"></div>
+              <div class="bc teal" style="height:80%" data-delay="0.4"></div>
+              <div class="bc lime" style="height:96%" data-delay="0.45"></div>
+              <div class="bc lime" style="height:100%" data-delay="0.5"></div>
+            </div>
+          </div>
+
+          <!-- MR Table -->
+          <div class="table-box">
+            <div class="table-head">
+              <div class="th">MR Name</div>
+              <div class="th">Visits</div>
+              <div class="th">Target</div>
+              <div class="th">Status</div>
+            </div>
+            <div class="t-row">
+              <div class="mr-cell"><div class="mr-av">RK</div><div class="mr-nm">Rajesh Kumar</div></div>
+              <div class="t-val">12</div>
+              <div class="t-val">14</div>
+              <div class="t-badge g">On Track</div>
+            </div>
+            <div class="t-row">
+              <div class="mr-cell"><div class="mr-av">PS</div><div class="mr-nm">Priya Sharma</div></div>
+              <div class="t-val">6</div>
+              <div class="t-val">14</div>
+              <div class="t-badge a">Lagging</div>
+            </div>
+            <div class="t-row">
+              <div class="mr-cell"><div class="mr-av">AM</div><div class="mr-nm">Amit Mehta</div></div>
+              <div class="t-val">14</div>
+              <div class="t-val">14</div>
+              <div class="t-badge g">Completed</div>
+            </div>
+          </div>
+
+          <!-- Map -->
+          <div class="map-strip">
+            <div class="map-area" style="width:60%">
+              <div class="map-grid-lines"></div>
+              <div class="pin g" style="top:30%;left:20%"></div>
+              <div class="pin t" style="top:55%;left:50%"></div>
+              <div class="pin a" style="top:18%;left:72%"></div>
+              <div class="pin g" style="top:68%;left:35%"></div>
+              <div class="pin t" style="top:40%;left:82%"></div>
+            </div>
+            <div class="map-info">
+              <div class="map-stat"><div class="map-dot" style="background:var(--lime)"></div>Verified visits: 34</div>
+              <div class="map-stat"><div class="map-dot" style="background:var(--amber)"></div>In progress: 8</div>
+              <div class="map-stat"><div class="map-dot" style="background:var(--faint)"></div>Offline: 4</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast notification -->
+      <div class="toast">
+        <div class="toast-icon">🎯</div>
+        <div class="toast-content">
+          <div class="toast-title">New lead booked a demo!</div>
+          <div class="toast-sub">Apex Pharma · <span>Team of 45 MRs</span> · Just now</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker-band">
+  <div class="ticker-track">
+    <div class="tick-item">📍 Geo-Verified Visits <span class="tick-sep">✦</span></div>
+    <div class="tick-item">📊 Real-Time Dashboard <span class="tick-sep">✦</span></div>
+    <div class="tick-item">🚀 40% Sales Growth <span class="tick-sep">✦</span></div>
+    <div class="tick-item">⚡ 48-Hour Go-Live <span class="tick-sep">✦</span></div>
+    <div class="tick-item">📱 Works on Any Phone <span class="tick-sep">✦</span></div>
+    <div class="tick-item">🇮🇳 Made for Indian Pharma <span class="tick-sep">✦</span></div>
+    <div class="tick-item">🔒 100% Secure Data <span class="tick-sep">✦</span></div>
+    <div class="tick-item">📍 Geo-Verified Visits <span class="tick-sep">✦</span></div>
+    <div class="tick-item">📊 Real-Time Dashboard <span class="tick-sep">✦</span></div>
+    <div class="tick-item">🚀 40% Sales Growth <span class="tick-sep">✦</span></div>
+    <div class="tick-item">⚡ 48-Hour Go-Live <span class="tick-sep">✦</span></div>
+    <div class="tick-item">📱 Works on Any Phone <span class="tick-sep">✦</span></div>
+    <div class="tick-item">🇮🇳 Made for Indian Pharma <span class="tick-sep">✦</span></div>
+    <div class="tick-item">🔒 100% Secure Data <span class="tick-sep">✦</span></div>
+  </div>
+</div>
+
+<!-- ============ PROBLEMS ============ -->
+<section class="problems" id="problems">
+  <div class="container">
+    <div class="prob-header reveal">
+      <div>
+        <div class="section-eyebrow">
+          <div class="eyebrow-line"></div>
+          <div class="eyebrow-label">The Real Problem</div>
+        </div>
+        <h2 class="section-title">Your MR Team Is Active.<br>But Where's <span class="lime">The Revenue?</span></h2>
+      </div>
+      <p class="section-sub">Pharma sales managers across India tell us the same thing — they can't see what's really happening in the field until it's too late to fix it.</p>
+    </div>
+
+    <div class="prob-grid reveal">
+      <div class="prob-card">
+        <div class="prob-num">01 / PROBLEM</div>
+        <span class="prob-emoji">📝</span>
+        <h3>Manual Reporting Chaos</h3>
+        <p>MRs submit Excel sheets at week-end — or they don't. You have zero visibility into daily field activity until it's already too late to change outcomes.</p>
+        <div class="prob-cost">
+          <span class="prob-cost-label">Avg. daily loss:</span>
+          <span class="prob-cost-val">₹3,200 per MR</span>
+        </div>
+      </div>
+      <div class="prob-card">
+        <div class="prob-num">02 / PROBLEM</div>
+        <span class="prob-emoji">📍</span>
+        <h3>Fake & Unverified Doctor Visits</h3>
+        <p>No way to confirm if your MR actually visited Dr. Sharma at 11 AM or logged it from his sofa. You're paying full salary for phantom work.</p>
+        <div class="prob-cost">
+          <span class="prob-cost-label">Industry avg. fake rate:</span>
+          <span class="prob-cost-val">18–22% of visits</span>
+        </div>
+      </div>
+      <div class="prob-card">
+        <div class="prob-num">03 / PROBLEM</div>
+        <span class="prob-emoji">📊</span>
+        <h3>Sales Data Scattered Everywhere</h3>
+        <p>Reports living in WhatsApp, email threads, and 12 different spreadsheets. Building a consolidated view takes hours of your manager's time every week.</p>
+        <div class="prob-cost">
+          <span class="prob-cost-label">Manager time wasted:</span>
+          <span class="prob-cost-val">8–12 hrs/week</span>
+        </div>
+      </div>
+      <div class="prob-card">
+        <div class="prob-num">04 / PROBLEM</div>
+        <span class="prob-emoji">🗺️</span>
+        <h3>No Territory Intelligence</h3>
+        <p>Which doctors are being neglected? Which areas are over-covered? Without data, territory decisions are guesswork — and missed doctors mean missed sales.</p>
+        <div class="prob-cost">
+          <span class="prob-cost-label">Territory gaps found:</span>
+          <span class="prob-cost-val">Avg. 30% uncovered</span>
+        </div>
+      </div>
+      <div class="prob-card">
+        <div class="prob-num">05 / PROBLEM</div>
+        <span class="prob-emoji">💸</span>
+        <h3>Wrong Incentives, Wrong Results</h3>
+        <p>Without verified activity data, incentive calculations are unfair, unreliable, and deeply demotivating for high performers. You reward the wrong behaviour.</p>
+        <div class="prob-cost">
+          <span class="prob-cost-label">Top MR attrition:</span>
+          <span class="prob-cost-val">22% / year avg.</span>
+        </div>
+      </div>
+      <div class="prob-card">
+        <div class="prob-num">06 / PROBLEM</div>
+        <span class="prob-emoji">⏱️</span>
+        <h3>Managers Chasing Reports, Not Closing Sales</h3>
+        <p>Your regional managers spend 30%+ of their week following up on reports and WhatsApp pings instead of coaching reps and building pipeline.</p>
+        <div class="prob-cost">
+          <span class="prob-cost-label">Opportunity cost:</span>
+          <span class="prob-cost-val">₹1.2L+/month</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOLUTION ============ -->
+<section class="solution" id="solution">
+  <div class="container">
+    <div class="section-eyebrow reveal">
+      <div class="eyebrow-line"></div>
+      <div class="eyebrow-label">The Solution</div>
+    </div>
+    <h2 class="section-title reveal">Everything Your Team Needs.<br><span class="lime">In One Intelligent Platform.</span></h2>
+    <p class="section-sub reveal">PharmaTrack is not just an app. It's a complete sales intelligence ecosystem that turns field activity into verified data — and verified data into higher revenue.</p>
+
+    <div class="solution-layout">
+      <div class="features-list reveal">
+        <div class="feat-item">
+          <div class="feat-num">01</div>
+          <div class="feat-body">
+            <h3>GPS Geo-Tagged Doctor Visits</h3>
+            <p>Every visit is time-stamped, location-verified, and tied to a real doctor. No more fake reports. Built-in accountability that your MRs actually respect.</p>
+            <span class="feat-tag">→ GPS + timestamp verification</span>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-num">02</div>
+          <div class="feat-body">
+            <h3>Real-Time Sales Manager Dashboard</h3>
+            <p>See your entire team's activity as it happens. Drill down by MR, territory, product, or time period. Instant visibility, no waiting.</p>
+            <span class="feat-tag">→ Live data, mobile + desktop</span>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-num">03</div>
+          <div class="feat-body">
+            <h3>Automated Daily Call Reports (DCR)</h3>
+            <p>MRs file reports from the app in under 2 minutes. Data flows directly to your dashboard. No WhatsApp. No Excel. No chasing.</p>
+            <span class="feat-tag">→ Auto-sync, zero manual entry</span>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-num">04</div>
+          <div class="feat-body">
+            <h3>Territory & Beat Planning Intelligence</h3>
+            <p>Visualize coverage gaps across your entire geography. Optimize routes. Ensure every doctor on your list gets the right number of touches per month.</p>
+            <span class="feat-tag">→ Map-based territory view</span>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-num">05</div>
+          <div class="feat-body">
+            <h3>Instant Alerts & Performance Signals</h3>
+            <p>Get notified the moment an MR misses their daily target, skips a key doctor, or goes off-route. Fix problems in real-time, not at end-of-month reviews.</p>
+            <span class="feat-tag">→ SMS + app push notifications</span>
+          </div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-num">06</div>
+          <div class="feat-body">
+            <h3>Sales Analytics & Monthly Forecasting</h3>
+            <p>Trend analysis, product performance by region, and revenue forecasting built on real field data — not estimates or gut feel.</p>
+            <span class="feat-tag">→ Export-ready reports</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- App Preview -->
+      <div class="reveal reveal-delay-2">
+        <div class="app-preview">
+          <div class="app-chrome">
+            <div class="app-dots">
+              <div class="app-dot" style="background:#FF5F57"></div>
+              <div class="app-dot" style="background:#FEBC2E"></div>
+              <div class="app-dot" style="background:#28C840"></div>
+            </div>
+            <span style="flex:1;text-align:center;font-family:var(--font-mono);font-size:0.68rem;color:var(--muted)">Sales Intelligence Dashboard · May 2025</span>
+            <div class="tbar-live"><div class="live-dot"></div> LIVE</div>
+          </div>
+          <div class="app-preview-inner">
+            <div class="preview-kpis">
+              <div class="p-kpi">
+                <div class="p-kpi-label">Total Visits</div>
+                <div class="p-kpi-val lime">1,847</div>
+              </div>
+              <div class="p-kpi">
+                <div class="p-kpi-label">Verified</div>
+                <div class="p-kpi-val teal">94%</div>
+              </div>
+              <div class="p-kpi">
+                <div class="p-kpi-label">Doctors Covered</div>
+                <div class="p-kpi-val">342</div>
+              </div>
+              <div class="p-kpi">
+                <div class="p-kpi-label">Sales ↑</div>
+                <div class="p-kpi-val amber">+38%</div>
+              </div>
+            </div>
+
+            <div class="area-chart-box">
+              <div class="area-head">
+                <div class="area-title">Monthly Sales vs Visit Activity</div>
+                <div class="area-val">↑ 38% growth</div>
+              </div>
+              <svg class="area" viewBox="0 0 480 70" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#AAFF45" stop-opacity="0.25"/>
+                    <stop offset="100%" stop-color="#AAFF45" stop-opacity="0"/>
+                  </linearGradient>
+                  <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#00E5B4"/>
+                    <stop offset="100%" stop-color="#AAFF45"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0,60 L40,52 L80,48 L120,42 L160,36 L200,32 L240,28 L280,22 L320,18 L360,12 L400,8 L440,5 L480,2 L480,70 L0,70 Z" fill="url(#areaGrad)"/>
+                <path d="M0,60 L40,52 L80,48 L120,42 L160,36 L200,32 L240,28 L280,22 L320,18 L360,12 L400,8 L440,5 L480,2" fill="none" stroke="url(#lineGrad)" stroke-width="2" stroke-linecap="round"/>
+                <!-- Data points -->
+                <circle cx="120" cy="42" r="3" fill="#AAFF45"/>
+                <circle cx="280" cy="22" r="3" fill="#AAFF45"/>
+                <circle cx="440" cy="5" r="3" fill="#AAFF45"/>
+              </svg>
+            </div>
+
+            <div class="terr-map">
+              <div class="terr-box">
+                <div class="terr-title">Territory Coverage</div>
+                <div class="terr-bars">
+                  <div class="terr-bar-row">
+                    <div class="terr-bar-label"><span>Mumbai North</span><span style="color:var(--lime)">94%</span></div>
+                    <div class="terr-bar-track"><div class="terr-bar-fill" style="width:94%;background:var(--lime)"></div></div>
+                  </div>
+                  <div class="terr-bar-row">
+                    <div class="terr-bar-label"><span>Pune Central</span><span style="color:var(--teal)">78%</span></div>
+                    <div class="terr-bar-track"><div class="terr-bar-fill" style="width:78%;background:var(--teal)"></div></div>
+                  </div>
+                  <div class="terr-bar-row">
+                    <div class="terr-bar-label"><span>Nashik</span><span style="color:var(--amber)">55%</span></div>
+                    <div class="terr-bar-track"><div class="terr-bar-fill" style="width:55%;background:var(--amber)"></div></div>
+                  </div>
+                  <div class="terr-bar-row">
+                    <div class="terr-bar-label"><span>Aurangabad</span><span style="color:var(--red)">32%</span></div>
+                    <div class="terr-bar-track"><div class="terr-bar-fill" style="width:32%;background:var(--red)"></div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="terr-box">
+                <div class="terr-title">Top Performing MRs</div>
+                <div style="display:flex;flex-direction:column;gap:10px">
+                  <div style="display:flex;align-items:center;justify-content:space-between">
+                    <div style="display:flex;align-items:center;gap:7px">
+                      <div class="mr-av">AM</div>
+                      <span style="font-size:0.72rem;color:var(--text)">Amit M.</span>
+                    </div>
+                    <span style="font-family:var(--font-mono);font-size:0.68rem;color:var(--lime)">100%</span>
+                  </div>
+                  <div style="display:flex;align-items:center;justify-content:space-between">
+                    <div style="display:flex;align-items:center;gap:7px">
+                      <div class="mr-av">RK</div>
+                      <span style="font-size:0.72rem;color:var(--text)">Rajesh K.</span>
+                    </div>
+                    <span style="font-family:var(--font-mono);font-size:0.68rem;color:var(--lime)">92%</span>
+                  </div>
+                  <div style="display:flex;align-items:center;justify-content:space-between">
+                    <div style="display:flex;align-items:center;gap:7px">
+                      <div class="mr-av">NP</div>
+                      <span style="font-size:0.72rem;color:var(--text)">Neha P.</span>
+                    </div>
+                    <span style="font-family:var(--font-mono);font-size:0.68rem;color:var(--teal)">87%</span>
+                  </div>
+                  <div style="display:flex;align-items:center;justify-content:space-between">
+                    <div style="display:flex;align-items:center;gap:7px">
+                      <div class="mr-av">SK</div>
+                      <span style="font-size:0.72rem;color:var(--text)">Suresh K.</span>
+                    </div>
+                    <span style="font-family:var(--font-mono);font-size:0.68rem;color:var(--amber)">74%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROI CALCULATOR ============ -->
+<section class="roi-section" id="roi">
+  <div class="container">
+    <div class="section-eyebrow reveal">
+      <div class="eyebrow-line"></div>
+      <div class="eyebrow-label">ROI Calculator</div>
+    </div>
+    <h2 class="section-title reveal">What Is Your <span class="lime">Blind Spot</span><br>Costing You Right Now?</h2>
+    <p class="section-sub reveal">Adjust the sliders to match your team. See your estimated annual revenue leak — and what switching to PharmaTrack recovers.</p>
+
+    <div class="roi-layout">
+      <div class="roi-sliders reveal">
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Number of MRs in your team</span>
+            <span class="sval" id="v-mrs">20</span>
+          </div>
+          <input type="range" id="sl-mrs" min="2" max="200" value="20" oninput="calcROI()">
+        </div>
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Average MR monthly salary (₹)</span>
+            <span class="sval" id="v-sal">₹28,000</span>
+          </div>
+          <input type="range" id="sl-sal" min="12000" max="80000" step="1000" value="28000" oninput="calcROI()">
+        </div>
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Estimated fake/unverified visits (%)</span>
+            <span class="sval" id="v-fake">20%</span>
+          </div>
+          <input type="range" id="sl-fake" min="5" max="40" value="20" oninput="calcROI()">
+        </div>
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Manager hours lost per week on reports</span>
+            <span class="sval" id="v-hrs">10 hrs</span>
+          </div>
+          <input type="range" id="sl-hrs" min="2" max="24" value="10" oninput="calcROI()">
+        </div>
+        <div class="slider-block">
+          <div class="slider-label">
+            <span>Number of managers in your team</span>
+            <span class="sval" id="v-mgr">3</span>
+          </div>
+          <input type="range" id="sl-mgr" min="1" max="20" value="3" oninput="calcROI()">
+        </div>
+
+        <!-- Small explainer -->
+        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:22px;margin-top:8px">
+          <div style="font-family:var(--font-mono);font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px">How We Calculate This</div>
+          <p style="font-size:0.82rem;color:var(--muted);line-height:1.7">We combine salary cost attributed to unverified visits, manager productivity loss valued at ₹500/hr, and conservative sales impact from territory gaps. PharmaTrack clients typically recover <strong style="color:var(--lime)">65–80% of this loss</strong> within 90 days.</p>
+        </div>
+      </div>
+
+      <div class="roi-results reveal reveal-delay-2">
+        <div class="roi-header">
+          <div class="roi-header-label">Your Estimated Annual Revenue Leak</div>
+          <div class="roi-big-num" id="roi-total">₹28.4L</div>
+          <div class="roi-big-sub">in unverified visits, wasted manager time & missed territory</div>
+        </div>
+
+        <div class="roi-breakdown">
+          <div class="roi-line">
+            <span class="roi-line-label"><div class="roi-dot" style="background:var(--red)"></div>Salary on fake/unverified visits</span>
+            <span class="roi-line-val neg" id="roi-fake">−₹13.4L</span>
+          </div>
+          <div class="roi-line">
+            <span class="roi-line-label"><div class="roi-dot" style="background:var(--amber)"></div>Manager productivity loss</span>
+            <span class="roi-line-val neg" id="roi-mgr">−₹7.8L</span>
+          </div>
+          <div class="roi-line">
+            <span class="roi-line-label"><div class="roi-dot" style="background:var(--muted)"></div>Missed territory revenue (est.)</span>
+            <span class="roi-line-val neg" id="roi-terr">−₹7.2L</span>
+          </div>
+          <div class="roi-line" style="border-bottom:none;padding-bottom:0">
+            <span class="roi-line-label" style="color:var(--lime);font-weight:600"><div class="roi-dot" style="background:var(--lime)"></div>PharmaTrack typical recovery (75%)</span>
+            <span class="roi-line-val pos" id="roi-recovery">+₹21.3L</span>
+          </div>
+        </div>
+
+        <div class="roi-cta-box">
+          <p>Want to see a <strong>custom ROI breakdown</strong> for your specific team, region, and product mix?</p>
+          <a href="#demo" class="btn-primary" style="justify-content:center;text-decoration:none">Get My Custom ROI Report <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CASE STUDY ============ -->
+<section class="case-section">
+  <div class="container">
+    <div class="section-eyebrow reveal">
+      <div class="eyebrow-line"></div>
+      <div class="eyebrow-label">Real Results</div>
+    </div>
+    <h2 class="section-title reveal">Before PharmaTrack.<br>After PharmaTrack.</h2>
+
+    <div class="case-card reveal">
+      <div class="case-left">
+        <span class="case-tag">Case Study · Maharashtra</span>
+        <h3>"We had 45 MRs, zero clarity, and a sales team that had given up on data."</h3>
+        <p>Apex Distributors was managing 45 MRs across 6 districts with WhatsApp groups and Excel sheets. Managers couldn't tell who was actually working. Incentive calculations were contested every month. Regional managers spent 15 hours a week on reports.</p>
+        <p>They went live on PharmaTrack in 48 hours. Within 60 days, everything changed.</p>
+        <div class="case-company">
+          <strong>Apex Pharma Distributors</strong> · Maharashtra · 45 MRs · ₹2.4Cr/month revenue
+        </div>
+      </div>
+      <div class="case-right">
+        <div class="before-after">
+          <div class="ba-block">
+            <div class="ba-label">Before PharmaTrack</div>
+            <div class="ba-metrics">
+              <div class="ba-metric">
+                <div class="ba-metric-val">68%</div>
+                <div class="ba-metric-label">Visit verification rate</div>
+              </div>
+              <div class="ba-metric">
+                <div class="ba-metric-val">15 hrs</div>
+                <div class="ba-metric-label">Manager time on reports/week</div>
+              </div>
+              <div class="ba-metric">
+                <div class="ba-metric-val">41%</div>
+                <div class="ba-metric-label">Territory coverage</div>
+              </div>
+            </div>
+          </div>
+          <div class="ba-block after">
+            <div class="ba-label">After 90 Days</div>
+            <div class="ba-metrics">
+              <div class="ba-metric">
+                <div class="ba-metric-val">97%</div>
+                <div class="ba-metric-label">Visit verification rate</div>
+              </div>
+              <div class="ba-metric">
+                <div class="ba-metric-val">2 hrs</div>
+                <div class="ba-metric-label">Manager time on reports/week</div>
+              </div>
+              <div class="ba-metric">
+                <div class="ba-metric-val">84%</div>
+                <div class="ba-metric-label">Territory coverage</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="background:var(--lime-glow);border:1px solid var(--border2);border-radius:14px;padding:22px;text-align:center">
+          <div style="font-family:var(--font-display);font-size:2.6rem;font-weight:800;color:var(--lime);line-height:1">+34%</div>
+          <div style="font-size:0.85rem;color:var(--muted);margin-top:6px">Revenue growth in 90 days</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testi-section" id="testimonials">
+  <div class="container">
+    <div class="section-eyebrow reveal">
+      <div class="eyebrow-line"></div>
+      <div class="eyebrow-label">Customer Stories</div>
+    </div>
+    <h2 class="section-title reveal">Pharma Leaders Who<br>Made the <span class="lime">Switch.</span></h2>
+
+    <div class="testi-grid reveal">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"In 45 days we identified 3 MRs submitting fake visits. We fixed it, restructured two territories, and Q3 numbers went up 34%. Best business decision we made all year."</p>
+        <div class="testi-author">
+          <div class="testi-av">VK</div>
+          <div>
+            <div class="testi-name">Vinod Khatri</div>
+            <div class="testi-role">National Sales Head</div>
+            <div class="testi-company">Apex Pharma Ltd. · Mumbai</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"My 45 MRs now file daily reports in under 2 minutes on the app. I have a live dashboard on my phone at all times. I've saved 12+ hours a week. That time now goes into coaching."</p>
+        <div class="testi-author">
+          <div class="testi-av">SP</div>
+          <div>
+            <div class="testi-name">Sanjay Patel</div>
+            <div class="testi-role">Regional Manager</div>
+            <div class="testi-company">HealthFirst Distributors · Pune</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"We distribute for 6 pharma companies. Managing MR activity across all of them was a nightmare. PharmaTrack unified everything. Order accuracy jumped from 72% to 94% in 60 days."</p>
+        <div class="testi-author">
+          <div class="testi-av">RM</div>
+          <div>
+            <div class="testi-name">Rohit Manchanda</div>
+            <div class="testi-role">Director</div>
+            <div class="testi-company">NorthStar Distribution · Delhi NCR</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEMO FORM ============ -->
+<section class="form-section" id="demo">
+  <div class="container">
+    <div class="section-eyebrow reveal">
+      <div class="eyebrow-line"></div>
+      <div class="eyebrow-label">Book Free Demo</div>
+    </div>
+    <h2 class="section-title reveal">See It Live.<br><span class="lime">Zero Commitment.</span></h2>
+
+    <div class="form-layout">
+      <div class="form-left reveal">
+        <p class="section-sub" style="max-width:440px">A 30-minute live demo tailored to your team size, region, and sales process. We'll show you exactly how much you can save — with real numbers.</p>
+        <div class="form-value-props">
+          <div class="value-prop">
+            <div class="vp-check">✓</div>
+            <div class="vp-text">Live walkthrough of the full dashboard configured for <strong>your team structure</strong></div>
+          </div>
+          <div class="value-prop">
+            <div class="vp-check">✓</div>
+            <div class="vp-text">Custom ROI breakdown using your actual MR count, region, and sales volume</div>
+          </div>
+          <div class="value-prop">
+            <div class="vp-check">✓</div>
+            <div class="vp-text"><strong>Free editable MR Reporting Excel Template</strong> (₹499 value) just for attending</div>
+          </div>
+          <div class="value-prop">
+            <div class="vp-check">✓</div>
+            <div class="vp-text">No sales pressure — if it's not a fit, we'll tell you ourselves</div>
+          </div>
+          <div class="value-prop">
+            <div class="vp-check">✓</div>
+            <div class="vp-text"><strong>30-day free pilot</strong> available for qualifying companies — no payment upfront</div>
+          </div>
+          <div class="value-prop">
+            <div class="vp-check">✓</div>
+            <div class="vp-text">Go live in <strong>48 hours</strong> — full onboarding and MR training included</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2">
+        <div class="form-card" id="formContainer">
+          <div class="form-card-title">Book Your Free Demo</div>
+          <div class="form-card-sub">Response within 2 business hours · 100% confidential</div>
+
+          <form id="leadForm" onsubmit="submitLead(event)">
+            <div class="form-row">
+              <div class="form-field">
+                <label>Full Name *</label>
+                <input type="text" placeholder="Rajesh Kumar" required>
+              </div>
+              <div class="form-field">
+                <label>Company Name *</label>
+                <input type="text" placeholder="Apex Pharma Ltd." required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Your Designation *</label>
+                <select required>
+                  <option value="">Select your role</option>
+                  <option>National Sales Head</option>
+                  <option>Regional Manager</option>
+                  <option>Area Manager</option>
+                  <option>Distribution Head</option>
+                  <option>MD / Director / Owner</option>
+                  <option>HR / Admin</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>MR Team Size *</label>
+                <select required>
+                  <option value="">Select range</option>
+                  <option>1–5 MRs</option>
+                  <option>6–15 MRs</option>
+                  <option>16–40 MRs</option>
+                  <option>41–100 MRs</option>
+                  <option>100+ MRs</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>Mobile Number *</label>
+                <input type="tel" placeholder="+91 98765 43210" required>
+              </div>
+              <div class="form-field">
+                <label>Work Email *</label>
+                <input type="email" placeholder="you@company.com" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label>State / Region</label>
+                <select>
+                  <option value="">Select state</option>
+                  <option>Maharashtra</option><option>Delhi NCR</option><option>Gujarat</option>
+                  <option>Karnataka</option><option>Tamil Nadu</option><option>Rajasthan</option>
+                  <option>Uttar Pradesh</option><option>West Bengal</option><option>Telangana</option>
+                  <option>Andhra Pradesh</option><option>Madhya Pradesh</option><option>Punjab</option>
+                  <option>Haryana</option><option>Kerala</option><option>Bihar</option><option>Other</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label>Monthly Sales Volume</label>
+                <select>
+                  <option value="">Select range</option>
+                  <option>Below ₹10L</option>
+                  <option>₹10L – ₹50L</option>
+                  <option>₹50L – ₹2Cr</option>
+                  <option>₹2Cr – ₹10Cr</option>
+                  <option>₹10Cr+</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="form-submit">
+              📅 Book My Free Demo <span class="arrow">→</span>
+            </button>
+          </form>
+
+          <div class="form-success" id="formSuccess">
+            <div class="success-icon">🎉</div>
+            <div class="success-title">Demo Booked!</div>
+            <p class="success-sub">Our team will call you within 2 hours to confirm your slot. Check your email for a calendar invite. Your free MR template is on its way too.</p>
+          </div>
+
+          <div class="form-trust">
+            <div class="trust-item">🔒 SSL Secured</div>
+            <div class="trust-item">🇮🇳 India-based team</div>
+            <div class="trust-item">✉️ No spam, ever</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESOURCES ============ -->
+<section class="resources" id="resources">
+  <div class="container">
+    <div class="section-eyebrow reveal">
+      <div class="eyebrow-line"></div>
+      <div class="eyebrow-label">Free Resources</div>
+    </div>
+    <h2 class="section-title reveal">Knowledge That Pays<br>For Itself <span class="lime">Immediately.</span></h2>
+
+    <div class="resource-grid reveal">
+      <div class="resource-card">
+        <div class="resource-thumb" style="background:linear-gradient(135deg,#0C1A2A,#0D2236)">📊</div>
+        <div class="resource-body">
+          <div class="resource-tag">SEO Article</div>
+          <div class="resource-title">Why Excel MR Reporting Is Silently Killing Your Pharma Sales Growth</div>
+          <div class="resource-desc">The hidden costs of manual reporting — data errors, delays, fake entries — could be costing your company crores annually. Here's the proof.</div>
+          <div class="resource-cta">Read Article →</div>
+        </div>
+      </div>
+      <div class="resource-card">
+        <div class="resource-thumb" style="background:linear-gradient(135deg,#0A1A28,#0C1E32)">📍</div>
+        <div class="resource-body">
+          <div class="resource-tag">Guide</div>
+          <div class="resource-title">How to Track MR Daily Activity Without Killing Team Morale</div>
+          <div class="resource-desc">The right system creates accountability without destroying trust. Here's the framework 300+ pharma managers are using right now.</div>
+          <div class="resource-cta">Read Guide →</div>
+        </div>
+      </div>
+      <div class="resource-card">
+        <div class="resource-thumb" style="background:linear-gradient(135deg,#081520,#0A1A2A)">📥</div>
+        <div class="resource-body">
+          <div class="resource-tag">Free Download</div>
+          <div class="resource-title">Editable MR Daily Activity Excel Template — Used by 500+ Teams</div>
+          <div class="resource-desc">The exact reporting format top pharma managers use to track visits, outcomes, and doctor feedback. Editable, free, yours instantly.</div>
+          <div class="resource-cta" style="display:flex;align-items:center;gap:8px">
+            <input type="email" placeholder="Your email" style="flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:8px 12px;color:var(--text);font-family:var(--font-body);font-size:0.8rem;outline:none;transition:border-color 0.2s" onfocus="this.style.borderColor='var(--lime)'" onblur="this.style.borderColor='var(--border)'">
+            <button onclick="this.textContent='Sent! ✓';this.style.background='var(--lime2)'" style="background:var(--lime);color:var(--bg);border:none;border-radius:7px;padding:8px 14px;font-size:0.78rem;font-family:var(--font-display);font-weight:700;cursor:pointer;white-space:nowrap;transition:all 0.2s">Get It Free</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST SIGNALS ============ -->
+<section class="trust-section">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:16px">
+      <div class="section-eyebrow reveal" style="justify-content:center">
+        <div class="eyebrow-line"></div>
+        <div class="eyebrow-label">Why Pharma Teams Trust Us</div>
+        <div class="eyebrow-line"></div>
+      </div>
+    </div>
+    <div class="trust-grid reveal">
+      <div class="trust-box">
+        <div class="trust-box-icon">🔒</div>
+        <div class="trust-box-title">SSL Secured</div>
+        <div class="trust-box-sub">256-bit encryption on all data</div>
+      </div>
+      <div class="trust-box">
+        <div class="trust-box-icon">🏢</div>
+        <div class="trust-box-title">Registered Company</div>
+        <div class="trust-box-sub">MCA & GST verified</div>
+      </div>
+      <div class="trust-box">
+        <div class="trust-box-icon">📱</div>
+        <div class="trust-box-title">Any Phone, Offline</div>
+        <div class="trust-box-sub">Android & iOS · Works without data</div>
+      </div>
+      <div class="trust-box">
+        <div class="trust-box-icon">🇮🇳</div>
+        <div class="trust-box-title">Made in India</div>
+        <div class="trust-box-sub">For Indian pharma workflows</div>
+      </div>
+      <div class="trust-box">
+        <div class="trust-box-icon">⚡</div>
+        <div class="trust-box-title">48-Hour Go Live</div>
+        <div class="trust-box-sub">Full onboarding included</div>
+      </div>
+      <div class="trust-box">
+        <div class="trust-box-icon">🎧</div>
+        <div class="trust-box-title">Dedicated Support</div>
+        <div class="trust-box-sub">WhatsApp + phone + email</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="#" class="logo" style="font-size:1.2rem;text-decoration:none">
+          <div class="logo-icon">
+            <svg viewBox="0 0 18 18" fill="none"><path d="M3 14L7 8L10 11L13 6L16 9" stroke="#050D16" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="9" r="1.5" fill="#050D16"/></svg>
+          </div>
+          PharmaTrack
+        </a>
+        <p class="footer-brand-desc">Helping Indian pharma companies and distributors build disciplined, high-performing MR field teams — with verified data and real-time intelligence.</p>
+        <a href="https://wa.me/919999999999" target="_blank" class="footer-wa">💬 WhatsApp Us</a>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#">MR Reporting App</a>
+        <a href="#">Sales Dashboard</a>
+        <a href="#">Geo Visit Tracking</a>
+        <a href="#">DCR Automation</a>
+        <a href="#">Territory Planning</a>
+        <a href="#">Analytics & Reports</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Pricing</a>
+        <a href="#">Case Studies</a>
+        <a href="#">Blog & Resources</a>
+        <a href="#demo">Book Demo</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Refund Policy</a>
+        <a href="#">Data Security</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 PharmaTrack. All rights reserved. Built with ❤️ in India.</div>
+      <div class="footer-gst">GST: 27XXXXX1234X1ZX · CIN: UXXXXX2023PLC000000</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ JAVASCRIPT ============ -->
+<script>
+// ROI Calculator
+function fmt(n) {
+  if (n >= 10000000) return '₹' + (n/10000000).toFixed(1) + 'Cr';
+  if (n >= 100000) return '₹' + (n/100000).toFixed(1) + 'L';
+  if (n >= 1000) return '₹' + (n/1000).toFixed(0) + 'K';
+  return '₹' + n;
+}
+
+function calcROI() {
+  const mrs = +document.getElementById('sl-mrs').value;
+  const sal = +document.getElementById('sl-sal').value;
+  const fake = +document.getElementById('sl-fake').value;
+  const hrs = +document.getElementById('sl-hrs').value;
+  const mgr = +document.getElementById('sl-mgr').value;
+
+  document.getElementById('v-mrs').textContent = mrs;
+  document.getElementById('v-sal').textContent = '₹' + sal.toLocaleString('en-IN');
+  document.getElementById('v-fake').textContent = fake + '%';
+  document.getElementById('v-hrs').textContent = hrs + ' hrs';
+  document.getElementById('v-mgr').textContent = mgr;
+
+  const annualSalary = mrs * sal * 12;
+  const fakeCost = Math.round(annualSalary * fake / 100);
+  const mgrCost = Math.round(hrs * 52 * mgr * 500);
+  const terrCost = Math.round(fakeCost * 0.55);
+  const total = fakeCost + mgrCost + terrCost;
+  const recovery = Math.round(total * 0.75);
+
+  document.getElementById('roi-fake').textContent = '−' + fmt(fakeCost);
+  document.getElementById('roi-mgr').textContent = '−' + fmt(mgrCost);
+  document.getElementById('roi-terr').textContent = '−' + fmt(terrCost);
+  document.getElementById('roi-total').textContent = fmt(total);
+  document.getElementById('roi-recovery').textContent = '+' + fmt(recovery);
+}
+calcROI();
+
+// Form submit
+function submitLead(e) {
+  e.preventDefault();
+  document.getElementById('leadForm').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+}
+
+// Exit popup
+let exitShown = false;
+document.addEventListener('mouseleave', e => {
+  if (e.clientY < 40 && !exitShown) {
+    exitShown = true;
+    setTimeout(() => document.getElementById('exitPopup').classList.add('show'), 400);
+  }
+});
+setTimeout(() => {
+  if (!exitShown) { exitShown = true; document.getElementById('exitPopup').classList.add('show'); }
+}, 50000);
+function closeExit() { document.getElementById('exitPopup').classList.remove('show'); }
+function sendTemplate(btn) {
+  btn.innerHTML = '✓ Template sent to your inbox!';
+  btn.style.background = 'var(--lime2)';
+  setTimeout(closeExit, 2000);
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Bar animation delays
+document.querySelectorAll('.bc').forEach(bc => {
+  const d = bc.getAttribute('data-delay');
+  if (d) bc.style.animationDelay = d + 's';
+});
+
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 60) nav.style.borderBottomColor = 'rgba(255,255,255,0.09)';
+  else nav.style.borderBottomColor = 'var(--border)';
+});
+
+// Smooth link hover state for form inputs/selects
+document.querySelectorAll('input, select').forEach(el => {
+  el.addEventListener('focus', () => el.style.borderColor = 'var(--lime)');
+  el.addEventListener('blur', () => el.style.borderColor = 'var(--border)');
+});
+</script>
+</body>
+</html>
